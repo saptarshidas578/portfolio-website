@@ -12,7 +12,7 @@
 
 **Bridging Silicon, Bare-Metal Firmware, Algorithms & Multimodal Intelligence.**
 
-[Live Demo](https://saptarshidas578.github.io/portfolio-website/) • [Architecture](#architecture--narrative-flow) • [Featured Systems](#flagship-engineering-systems) • [Local Setup](#local-development)
+[Live Production Deployment (Netlify)](https://saptarshidas-portfolio.netlify.app/) • [Architecture](#architecture--narrative-flow) • [Featured Systems](#flagship-engineering-systems) • [Local Setup](#local-development)
 
 </div>
 
