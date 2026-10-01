@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-glow" cx="65%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#141c2e" />
+      <stop offset="60%" stop-color="#080b12" />
+      <stop offset="100%" stop-color="#020306" />
+    </radialGradient>
+
+    <!-- Neon Circuit Glow Filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="glow-led" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Linear Gradients -->
+    <linearGradient id="chip-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="dac-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#162238" />
+      <stop offset="100%" stop-color="#0a101d" />
+    </linearGradient>
+
+    <linearGradient id="gold-bus" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <linearGradient id="cyan-bus" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .mono { font-family: 'JetBrains Mono', monospace, 'Courier New'; }
+    .sans { font-family: 'Space Grotesk', -apple-system, sans-serif; }
+    .pulse-bus { stroke-dasharray: 8 6; animation: dash 12s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -200; } }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="675" fill="url(#bg-glow)" />
+
+  <!-- PCB Grid Pattern -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <path d="M 0,75 L 1200,75 M 0,150 L 1200,150 M 0,225 L 1200,225 M 0,300 L 1200,300 M 0,375 L 1200,375 M 0,450 L 1200,450 M 0,525 L 1200,525 M 0,600 L 1200,600" />
+    <path d="M 100,0 L 100,675 M 200,0 L 200,675 M 300,0 L 300,675 M 400,0 L 400,675 M 500,0 L 500,675 M 600,0 L 600,675 M 700,0 L 700,675 M 800,0 L 800,675 M 900,0 L 900,675 M 1000,0 L 1000,675 M 1100,0 L 1100,675" />
+  </g>
+
+  <!-- Title / System Spec Banner -->
+  <g transform="translate(60, 50)">
+    <rect x="0" y="0" width="480" height="42" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="21" r="5" fill="#38bdf8" filter="url(#glow-cyan)" />
+    <text x="36" y="26" fill="#f8fafc" class="mono" font-size="13" font-weight="bold" letter-spacing="1.5">SYS_CORE // ESP32 DUAL-CORE AUDIO EMBEDDED</text>
+    <text x="365" y="26" fill="#38bdf8" class="mono" font-size="11">REV 2.4 [FreeRTOS]</text>
+  </g>
+
+  <!-- Main ESP32 SoC Module -->
+  <g transform="translate(180, 160)">
+    <!-- PCB Outer Body -->
+    <rect x="0" y="0" width="280" height="340" rx="14" fill="url(#chip-grad)" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="2" />
+    <!-- RF Shield Can -->
+    <rect x="25" y="25" width="230" height="210" rx="8" fill="#090d16" stroke="#475569" stroke-width="1.5" />
+    <path d="M 35,35 L 245,35 L 245,60 L 35,60 Z" fill="#1e293b" />
+    <text x="140" y="52" fill="#94a3b8" class="mono" font-size="11" text-anchor="middle" font-weight="bold" letter-spacing="2">ESP-WROOM-32</text>
+    
+    <!-- Dual-Core CPU Blocks -->
+    <g transform="translate(45, 80)">
+      <rect x="0" y="0" width="90" height="70" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2" />
+      <text x="45" y="22" fill="#38bdf8" class="mono" font-size="10" text-anchor="middle" font-weight="bold">CORE 0</text>
+      <text x="45" y="40" fill="#94a3b8" class="mono" font-size="8.5" text-anchor="middle">WiFi + NTP</text>
+      <text x="45" y="56" fill="#64748b" class="mono" font-size="8" text-anchor="middle">WS2812B Driver</text>
+
+      <rect x="100" y="0" width="90" height="70" rx="6" fill="#0f172a" stroke="#fbbf24" stroke-width="1.2" />
+      <text x="145" y="22" fill="#fbbf24" class="mono" font-size="10" text-anchor="middle" font-weight="bold">CORE 1</text>
+      <text x="145" y="40" fill="#94a3b8" class="mono" font-size="8.5" text-anchor="middle">FreeRTOS Task</text>
+      <text x="145" y="56" fill="#fbbf24" class="mono" font-size="8" text-anchor="middle">I2S Audio Synth</text>
+    </g>
+
+    <!-- Crystal Oscillator -->
+    <rect x="105" y="168" width="70" height="28" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1" />
+    <text x="140" y="186" fill="#e2e8f0" class="mono" font-size="9" text-anchor="middle">40.0 MHz</text>
+
+    <!-- Pinout Label Row -->
+    <g transform="translate(25, 260)">
+      <text x="10" y="18" fill="#38bdf8" class="mono" font-size="9">GPIO25 (BCK)</text>
+      <text x="10" y="36" fill="#38bdf8" class="mono" font-size="9">GPIO26 (WS/LRCK)</text>
+      <text x="10" y="54" fill="#38bdf8" class="mono" font-size="9">GPIO22 (DOUT)</text>
+
+      <text x="130" y="18" fill="#fbbf24" class="mono" font-size="9">GPIO21 (SDA)</text>
+      <text x="130" y="36" fill="#fbbf24" class="mono" font-size="9">GPIO19 (SCL)</text>
+      <text x="130" y="54" fill="#34d399" class="mono" font-size="9">GPIO18 (DIN_LED)</text>
+    </g>
+  </g>
+
+  <!-- I2S Audio Bus Tracks (Glowing Copper/Cyan) -->
+  <g stroke="url(#cyan-bus)" stroke-width="2.5" fill="none" filter="url(#glow-cyan)" class="pulse-bus">
+    <path d="M 460,380 L 580,380 L 610,330 L 670,330" />
+    <path d="M 460,400 L 570,400 L 600,350 L 670,350" />
+    <path d="M 460,420 L 560,420 L 590,370 L 670,370" />
+  </g>
+
+  <!-- I2C Bus Tracks (Gold to RTC) -->
+  <g stroke="url(#gold-bus)" stroke-width="2" fill="none" filter="url(#glow-gold)">
+    <path d="M 460,250 L 550,250 L 580,180 L 670,180" />
+    <path d="M 460,270 L 540,270 L 570,200 L 670,200" />
+  </g>
+
+  <!-- PCM5100A 32-bit I2S DAC Module -->
+  <g transform="translate(670, 280)">
+    <rect x="0" y="0" width="220" height="150" rx="10" fill="url(#dac-grad)" stroke="#38bdf8" stroke-width="1.8" />
+    <rect x="15" y="15" width="190" height="35" rx="5" fill="#0d1527" />
+    <text x="110" y="38" fill="#38bdf8" class="mono" font-size="12" text-anchor="middle" font-weight="bold">PCM5100A 32-BIT DAC</text>
+    
+    <!-- Audio Waveform Visualization inside DAC -->
+    <path d="M 25,100 Q 55,50 85,100 T 145,100 T 195,100" fill="none" stroke="#38bdf8" stroke-width="2.5" filter="url(#glow-cyan)" />
+    <path d="M 25,100 Q 45,75 65,100 T 105,100 T 145,100 T 185,100" fill="none" stroke="#f59e0b" stroke-width="1.2" opacity="0.6" />
+    
+    <text x="110" y="132" fill="#94a3b8" class="mono" font-size="9" text-anchor="middle">HARMONIC BELL SYNTH (44.1kHz / 32-bit)</text>
+  </g>
+
+  <!-- Audio Line Out Jacks -->
+  <g transform="translate(890, 325)">
+    <path d="M 0,15 L 60,15" stroke="#38bdf8" stroke-width="3" filter="url(#glow-cyan)" />
+    <circle cx="75" cy="15" r="14" fill="#0f172a" stroke="#38bdf8" stroke-width="2" />
+    <circle cx="75" cy="15" r="6" fill="#38bdf8" filter="url(#glow-cyan)" />
+    <text x="105" y="20" fill="#f8fafc" class="mono" font-size="11" font-weight="bold">LINE OUT (RCA/3.5mm)</text>
+    <text x="105" y="34" fill="#94a3b8" class="mono" font-size="9">Westminster Chime Waveform</text>
+  </g>
+
+  <!-- DS1307 RTC Module -->
+  <g transform="translate(670, 130)">
+    <rect x="0" y="0" width="180" height="100" rx="8" fill="#0d1322" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="90" y="28" fill="#fbbf24" class="mono" font-size="11" text-anchor="middle" font-weight="bold">DS1307 RTC [I2C]</text>
+    <!-- Coin Battery Silhouette -->
+    <circle cx="45" cy="65" r="22" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <text x="45" y="69" fill="#f59e0b" class="mono" font-size="8" text-anchor="middle">CR2032</text>
+    <!-- Crystal 32.768 kHz -->
+    <rect x="85" y="55" width="75" height="22" rx="4" fill="#090e1a" stroke="#64748b" stroke-width="1" />
+    <text x="122" y="70" fill="#94a3b8" class="mono" font-size="8" text-anchor="middle">32.768 kHz</text>
+  </g>
+
+  <!-- WS2812B NeoPixel Dial Ring (Right Side Visual) -->
+  <g transform="translate(1030, 190)">
+    <circle cx="0" cy="0" r="85" fill="none" stroke="#1e293b" stroke-width="18" />
+    <!-- 16 Addressable LEDs Glowing in Ring -->
+    <!-- Angles 0 to 360 in 22.5 deg increments -->
+    <circle cx="85" cy="0" r="5" fill="#38bdf8" filter="url(#glow-led)" />
+    <circle cx="78" cy="32" r="5" fill="#38bdf8" filter="url(#glow-led)" />
+    <circle cx="60" cy="60" r="5" fill="#34d399" filter="url(#glow-led)" />
+    <circle cx="32" cy="78" r="5" fill="#34d399" filter="url(#glow-led)" />
+    <circle cx="0" cy="85" r="5" fill="#fbbf24" filter="url(#glow-led)" />
+    <circle cx="-32" cy="78" r="5" fill="#fbbf24" filter="url(#glow-led)" />
+    <circle cx="-60" cy="60" r="5" fill="#f97316" filter="url(#glow-led)" />
+    <circle cx="-78" cy="32" r="5" fill="#f97316" filter="url(#glow-led)" />
+    <circle cx="-85" cy="0" r="5" fill="#ef4444" filter="url(#glow-led)" />
+    <circle cx="-78" cy="-32" r="5" fill="#ef4444" filter="url(#glow-led)" />
+    <circle cx="-60" cy="-60" r="5" fill="#a855f7" filter="url(#glow-led)" />
+    <circle cx="-32" cy="-78" r="5" fill="#a855f7" filter="url(#glow-led)" />
+    <circle cx="0" cy="-85" r="5" fill="#6366f1" filter="url(#glow-led)" />
+    <circle cx="32" cy="-78" r="5" fill="#6366f1" filter="url(#glow-led)" />
+    <circle cx="60" cy="-60" r="5" fill="#38bdf8" filter="url(#glow-led)" />
+    <circle cx="78" cy="-32" r="5" fill="#38bdf8" filter="url(#glow-led)" />
+
+    <!-- Clock Center Hub -->
+    <circle cx="0" cy="0" r="45" fill="#090d16" stroke="#334155" stroke-width="2" />
+    <text x="0" y="-8" fill="#f8fafc" class="mono" font-size="12" text-anchor="middle" font-weight="bold">12:00:00</text>
+    <text x="0" y="8" fill="#38bdf8" class="mono" font-size="8" text-anchor="middle">NTP SYNCED</text>
+    <text x="0" y="22" fill="#fbbf24" class="mono" font-size="7.5" text-anchor="middle">16x WS2812B</text>
+  </g>
+
+  <!-- Technical Annotations Footer -->
+  <g transform="translate(60, 560)">
+    <rect x="0" y="0" width="1080" height="75" rx="8" fill="#090d17" stroke="#1e293b" stroke-width="1.2" />
+    <g transform="translate(25, 25)">
+      <text x="0" y="0" fill="#38bdf8" class="mono" font-size="11" font-weight="bold">HARDWARE ARCHITECTURE METRICS</text>
+      <text x="0" y="24" fill="#94a3b8" class="mono" font-size="10">Dual 240MHz Xtensa LX6 &#8226; Zero-Jitter FreeRTOS Queue &#8226; Direct 32-bit I2S DMA Buffer &#8226; Automatic Fallback to DS1307 RTC upon Wi-Fi Drop</text>
+    </g>
+    <g transform="translate(860, 28)">
+      <rect x="0" y="0" width="190" height="28" rx="4" fill="#1e293b" />
+      <text x="95" y="18" fill="#34d399" class="mono" font-size="10" text-anchor="middle" font-weight="bold">LATENCY &lt; 1.2 ms</text>
+    </g>
+  </g>
+</svg>

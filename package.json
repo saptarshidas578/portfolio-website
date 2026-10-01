@@ -1,0 +1,32 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Interactive 3D WebGL Portfolio of Saptarshi Das — Electrical Engineering, Embedded Systems & AI. Featuring relativistic Kerr Black Hole physics, interactive circuit constellations, and Tokamak quantum fusion reactor.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "portfolio",
+    "threejs",
+    "webgl",
+    "electrical-engineering",
+    "embedded-systems",
+    "esp32",
+    "freertos",
+    "artificial-intelligence",
+    "kerr-black-hole",
+    "shaders"
+  ],
+  "author": "Saptarshi Das <saptarshi2007@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "puppeteer": "^25.12.0",
+    "vite": "^8.3.1"
+  }
+}
