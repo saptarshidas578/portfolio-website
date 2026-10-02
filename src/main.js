@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import './style.css';
 import { StarfieldSystem } from './systems/StarfieldSystem.js';
 import { BlackHoleSystem } from './systems/BlackHoleSystem.js';
-import { CodeStreamSystem } from './systems/CodeStreamSystem.js';
 import { ScrollCameraRig } from './systems/ScrollCameraRig.js';
 import { PostProcessingPipeline } from './systems/PostProcessingPipeline.js';
 import { CosmicAudioSynthesizer } from './systems/CosmicAudioSynthesizer.js';
@@ -58,20 +57,17 @@ class App {
   }
 
   initSystems() {
-    const holeRadius = 2.4;
-    // Position black hole cleanly to the right of the screen (4.6, 0.5, 0.0)
-    const holeOrigin = new THREE.Vector3(4.6, 0.5, 0.0);
+    const holeRadius = 3.6;
+    // Dead-center supermassive black hole with twin relativistic polar plasma jets
+    const holeOrigin = new THREE.Vector3(0.0, 0.0, 0.0);
 
-    // 1. Cosmic Deep Starfield (pinpoint stars on pure pitch-black void)
-    this.starfield = new StarfieldSystem(this.scene, 3000);
+    // 1. Cosmic Deep Starfield (Dense sky with scroll scatter & side margins)
+    this.starfield = new StarfieldSystem(this.scene, 6500);
 
-    // 2. Black Hole Singularity Assembly (Kerr metric with Einstein lensing arcs)
+    // 2. Black Hole Singularity Assembly (Centered, enlarged, dual polar jets, interactive rotation)
     this.blackHole = new BlackHoleSystem(this.scene, this.camera, holeRadius, holeOrigin);
 
-    // 3. Relativistic Code Stream & Prominent Multicolor Formula Badges
-    this.codeStreams = new CodeStreamSystem(this.scene, holeRadius, holeOrigin, this.renderer);
-
-    // 4. Scroll Camera Controller & Parallax
+    // 3. Scroll Camera Controller & Parallax
     this.cameraRig = new ScrollCameraRig(this.camera, holeOrigin);
 
     // 5. Cinematic Post-Processing Pipeline (Fast 1/5 res bloom, chromatic dispersion)
@@ -228,13 +224,14 @@ class App {
     // Window scroll binding: drives camera along geodesic flight path
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const transitionZone = window.innerHeight * 1.5;
+      const transitionZone = window.innerHeight * 1.1;
       const progress = Math.min(1.0, scrollY / transitionZone);
       this.cameraRig.setScrollProgress(progress);
     }, { passive: true });
 
     // UI Elements for hero typography fade
     this.heroContent = document.getElementById('hero-content');
+    this.heroHud = document.querySelector('.hero-interactive-hud');
   }
 
   setupResize() {
@@ -262,9 +259,9 @@ class App {
     const scrollT = camState.progress;
 
     // 2. Update Systems
-    this.starfield.update(deltaTime);
+    this.starfield.update(deltaTime, scrollT);
     this.blackHole.update(deltaTime, this.camera);
-    this.codeStreams.update(deltaTime);
+    this.blackHole.setScrollProgress(scrollT);
     this.postProcessing.update(deltaTime, scrollT, camState.velocity);
     this.audio.update(scrollT, camState.velocity);
 
@@ -275,6 +272,10 @@ class App {
       const heroFade = Math.max(0.0, 1.0 - (scrollY / (window.innerHeight * 0.75)));
       this.heroContent.style.opacity = heroFade;
       this.heroContent.style.pointerEvents = heroFade < 0.1 ? 'none' : 'auto';
+      if (this.heroHud) {
+        this.heroHud.style.opacity = heroFade;
+        this.heroHud.style.pointerEvents = heroFade < 0.1 ? 'none' : 'auto';
+      }
     }
 
     // 4. Render Scene with Post-Processing

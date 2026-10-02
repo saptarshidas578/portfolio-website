@@ -3,25 +3,38 @@ import {
   diskVertexShader, 
   diskFragmentShader, 
   lensingArcVertexShader, 
-  lensingArcFragmentShader 
+  lensingArcFragmentShader,
+  polarJetBeamVertexShader,
+  polarJetBeamFragmentShader,
+  polarJetParticleVertexShader,
+  polarJetParticleFragmentShader
 } from '../shaders/blackHoleDisk.js';
 
 /**
  * BlackHoleSystem
- * Physically inspired, high-performance Kerr black hole assembly
- * - Positioned cleanly on the right side of the screen
- * - True Interstellar gravitational lensing (equatorial disk + upper/lower Einstein arcs)
- * - Pitch-black event horizon (absolute #000000 shadow)
- * - Relativistic Doppler boosting and razor-sharp photon ring caustic
+ * Centered, enlarged supermassive Kerr black hole with:
+ * - Colossal twin relativistic polar plasma jets (Blandford-Znajek mechanism)
+ * - True Einstein gravitational lensing arcs and photon ring
+ * - Pure pitch-black event horizon shadow
+ * - Interactive hover acceleration (speeds up on mouse proximity)
+ * - Click-and-drag 3D rotation with inertial damping
+ * - Singularity collapse on scroll (clears space for Section 02)
  */
 export class BlackHoleSystem {
-  constructor(scene, camera, radius = 2.4, position = new THREE.Vector3(4.6, 0.5, 0.0)) {
+  constructor(scene, camera, radius = 3.6, position = new THREE.Vector3(0.0, 0.0, 0.0)) {
     this.scene = scene;
     this.camera = camera;
     this.radius = radius;
     this.diskInner = radius * 1.05;
-    this.diskOuter = 8.6;
+    this.diskOuter = 13.2;
     this.time = 0;
+
+    // Interactive state
+    this.speedMultiplier = 1.0;
+    this.targetSpeedMultiplier = 1.0;
+    this.userRotation = { x: 0, y: 0 };
+    this.targetUserRotation = { x: 0, y: 0 };
+    this.isDragging = false;
 
     this.group = new THREE.Group();
     this.group.position.copy(position);
@@ -30,6 +43,8 @@ export class BlackHoleSystem {
     this.initEventHorizon();
     this.initAccretionDisk();
     this.initGravitationalLensingArcs();
+    this.initPolarJets();
+    this.setupInteractivity();
   }
 
   setPosition(pos) {
@@ -41,11 +56,25 @@ export class BlackHoleSystem {
   }
 
   /**
+   * Smoothly collapse into singularity as user scrolls past the event horizon
+   */
+  setScrollProgress(progress) {
+    if (progress > 0.55) {
+      const fade = Math.max(0.0, 1.0 - (progress - 0.55) / 0.40);
+      const scale = Math.pow(fade, 1.5);
+      this.group.scale.setScalar(scale);
+      this.group.visible = scale > 0.005;
+    } else {
+      this.group.scale.setScalar(1.0);
+      this.group.visible = true;
+    }
+  }
+
+  /**
    * Solid pitch-black Event Horizon Sphere (Absolute Schwarzschild Shadow)
-   * High renderOrder and depthWrite guarantees 100% pitch-black void inside the horizon
    */
   initEventHorizon() {
-    const geometry = new THREE.SphereGeometry(this.radius, 40, 40);
+    const geometry = new THREE.SphereGeometry(this.radius, 48, 48);
     
     const material = new THREE.MeshBasicMaterial({
       color: 0x000000,
@@ -54,34 +83,33 @@ export class BlackHoleSystem {
     });
 
     this.horizonSphere = new THREE.Mesh(geometry, material);
-    this.horizonSphere.renderOrder = 25;
+    this.horizonSphere.renderOrder = 30;
     this.group.add(this.horizonSphere);
 
-    // Inner occlusion disc facing the camera for absolute blackness
-    const occludeGeo = new THREE.CircleGeometry(this.radius * 1.02, 40);
+    // Camera-facing inner occlusion disc for absolute zero-light core
+    const occludeGeo = new THREE.CircleGeometry(this.radius * 1.03, 48);
     const occludeMat = new THREE.MeshBasicMaterial({
       color: 0x000000,
       side: THREE.DoubleSide,
       depthWrite: true
     });
     this.occlusionDisk = new THREE.Mesh(occludeGeo, occludeMat);
-    this.occlusionDisk.renderOrder = 26;
+    this.occlusionDisk.renderOrder = 31;
     this.group.add(this.occlusionDisk);
   }
 
   /**
    * Primary Relativistic Equatorial Accretion Disk
-   * Tilted at an aesthetic angle (~74 degrees inclination)
    */
   initAccretionDisk() {
-    const geometry = new THREE.RingGeometry(this.diskInner, this.diskOuter, 96, 24);
+    const geometry = new THREE.RingGeometry(this.diskInner, this.diskOuter, 112, 32);
 
     this.diskUniforms = {
       uTime: { value: 0 },
       uHoleRadius: { value: this.radius },
       uDiskInner: { value: this.diskInner },
       uDiskOuter: { value: this.diskOuter },
-      uFunnelDepth: { value: 1.4 },
+      uFunnelDepth: { value: 2.1 },
       uCameraPos: { value: this.camera.position },
       uDopplerStrength: { value: 1.25 }
     };
@@ -97,7 +125,6 @@ export class BlackHoleSystem {
     });
 
     this.diskMesh = new THREE.Mesh(geometry, material);
-    // Iconic tilted orientation
     this.diskMesh.rotation.x = -Math.PI / 2.43;
     this.diskMesh.rotation.z = Math.PI / 6.5;
     this.group.add(this.diskMesh);
@@ -105,14 +132,11 @@ export class BlackHoleSystem {
 
   /**
    * Interstellar Gravitational Lensing Arcs (Einstein Halo)
-   * Light from the back of the disk curved around the top and bottom of the event horizon
    */
   initGravitationalLensingArcs() {
-    // Upper Arc: arched proudly over top of event horizon
     const arcRadiusInner = this.radius * 1.04;
-    const arcRadiusOuter = this.radius * 2.15;
-    // Semicircular ring segment (from 0 to PI)
-    const upperGeo = new THREE.RingGeometry(arcRadiusInner, arcRadiusOuter, 72, 8, 0, Math.PI);
+    const arcRadiusOuter = this.radius * 2.18;
+    const upperGeo = new THREE.RingGeometry(arcRadiusInner, arcRadiusOuter, 84, 12, 0, Math.PI);
 
     this.upperArcUniforms = {
       uTime: { value: 0 },
@@ -131,15 +155,14 @@ export class BlackHoleSystem {
     });
 
     this.upperArcMesh = new THREE.Mesh(upperGeo, upperMat);
-    // Positioned slightly behind the black hole sphere, standing upright in XY plane
-    this.upperArcMesh.position.set(0, 0, -0.05);
+    this.upperArcMesh.position.set(0, 0, -0.06);
     this.upperArcMesh.rotation.x = -0.15;
-    this.upperArcMesh.rotation.z = Math.PI / 6.5; // aligned with disk tilt
-    this.upperArcMesh.renderOrder = 15;
+    this.upperArcMesh.rotation.z = Math.PI / 6.5;
+    this.upperArcMesh.renderOrder = 18;
     this.group.add(this.upperArcMesh);
 
     // Lower Arc: arched under bottom of event horizon behind the disk
-    const lowerGeo = new THREE.RingGeometry(arcRadiusInner, arcRadiusOuter * 0.60, 72, 8, Math.PI, Math.PI);
+    const lowerGeo = new THREE.RingGeometry(arcRadiusInner, arcRadiusOuter * 0.62, 84, 12, Math.PI, Math.PI);
 
     this.lowerArcUniforms = {
       uTime: { value: 0 },
@@ -158,21 +181,190 @@ export class BlackHoleSystem {
     });
 
     this.lowerArcMesh = new THREE.Mesh(lowerGeo, lowerMat);
-    this.lowerArcMesh.position.set(0, 0, -0.15);
+    this.lowerArcMesh.position.set(0, 0, -0.22);
     this.lowerArcMesh.rotation.x = 0.15;
     this.lowerArcMesh.rotation.z = Math.PI / 6.5;
-    this.lowerArcMesh.renderOrder = 14;
+    this.lowerArcMesh.renderOrder = 17;
     this.group.add(this.lowerArcMesh);
   }
 
-  update(deltaTime, camera) {
-    this.time += deltaTime;
+  /**
+   * Dual Relativistic Polar Plasma Jets
+   * Aligned perpendicular to the accretion disk along the magnetic spin axis (Z axis of jet group)
+   */
+  initPolarJets() {
+    this.jetGroup = new THREE.Group();
+    // Exactly match disk tilt so the Z axis of jetGroup is normal to disk plane
+    this.jetGroup.rotation.x = -Math.PI / 2.43;
+    this.jetGroup.rotation.z = Math.PI / 6.5;
+    this.group.add(this.jetGroup);
 
+    this.jetUniforms = {
+      uTime: { value: 0 },
+      uSpeedMultiplier: { value: 1.0 }
+    };
+
+    // 1. Collimated Beam Shaders
+    const beamMaterial = new THREE.ShaderMaterial({
+      vertexShader: polarJetBeamVertexShader,
+      fragmentShader: polarJetBeamFragmentShader,
+      uniforms: this.jetUniforms,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      side: THREE.DoubleSide
+    });
+
+    const jetLength = 26.0;
+    
+    // North Beam Cylinder (oriented along +Z axis)
+    const beamGeoNorth = new THREE.CylinderGeometry(0.85, 0.26, jetLength, 32, 16, true);
+    beamGeoNorth.translate(0, jetLength / 2, 0);
+    beamGeoNorth.rotateX(Math.PI / 2); // Rotates cylinder from Y axis to +Z axis
+    this.northBeam = new THREE.Mesh(beamGeoNorth, beamMaterial);
+    this.northBeam.position.z = this.radius * 0.90;
+    this.jetGroup.add(this.northBeam);
+
+    // South Beam Cylinder (oriented along -Z axis)
+    const beamGeoSouth = new THREE.CylinderGeometry(0.85, 0.26, jetLength, 32, 16, true);
+    beamGeoSouth.translate(0, jetLength / 2, 0);
+    beamGeoSouth.rotateX(-Math.PI / 2); // Rotates cylinder from Y axis to -Z axis
+    this.southBeam = new THREE.Mesh(beamGeoSouth, beamMaterial);
+    this.southBeam.position.z = -this.radius * 0.90;
+    this.jetGroup.add(this.southBeam);
+
+    // 2. Helical Vortex Plasma Particles (1,400 particles)
+    const particleCount = 1400;
+    const pGeo = new THREE.BufferGeometry();
+    const pPositions = new Float32Array(particleCount * 3);
+    const pSizes = new Float32Array(particleCount);
+    const pPhases = new Float32Array(particleCount);
+    const pProgress = new Float32Array(particleCount);
+    const pPoleSigns = new Float32Array(particleCount);
+
+    for (let i = 0; i < particleCount; i++) {
+      pSizes[i] = 1.6 + Math.random() * 2.8;
+      pPhases[i] = Math.random() * Math.PI * 2.0;
+      pProgress[i] = Math.random();
+      // Even split between North (+1.0) and South (-1.0) jets
+      pPoleSigns[i] = i % 2 === 0 ? 1.0 : -1.0;
+    }
+
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    pGeo.setAttribute('size', new THREE.BufferAttribute(pSizes, 1));
+    pGeo.setAttribute('phase', new THREE.BufferAttribute(pPhases, 1));
+    pGeo.setAttribute('progress', new THREE.BufferAttribute(pProgress, 1));
+    pGeo.setAttribute('poleSign', new THREE.BufferAttribute(pPoleSigns, 1));
+
+    const particleMaterial = new THREE.ShaderMaterial({
+      vertexShader: polarJetParticleVertexShader,
+      fragmentShader: polarJetParticleFragmentShader,
+      uniforms: this.jetUniforms,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    this.jetParticles = new THREE.Points(pGeo, particleMaterial);
+    this.jetGroup.add(this.jetParticles);
+  }
+
+  /**
+   * Setup hover acceleration and click-and-drag 3D rotation listeners
+   */
+  setupInteractivity() {
+    let lastX = 0;
+    let lastY = 0;
+    let isMouseDown = false;
+
+    // Track mouse over hero section to accelerate spin
+    window.addEventListener('mousemove', (e) => {
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        const inHero = e.clientY >= rect.top && e.clientY <= rect.bottom;
+        this.targetSpeedMultiplier = inHero ? 2.5 : 1.0;
+      } else {
+        this.targetSpeedMultiplier = e.clientY < window.innerHeight ? 2.5 : 1.0;
+      }
+
+      if (isMouseDown) {
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        // Apply mouse drag to 3D rotation
+        this.targetUserRotation.y += dx * 0.0055;
+        this.targetUserRotation.x += dy * 0.0055;
+        this.targetUserRotation.x = Math.max(-1.2, Math.min(1.2, this.targetUserRotation.x));
+      }
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      // Don't drag if clicking buttons, links or nav
+      if (e.target.closest('a, button, input, textarea, .top-nav')) return;
+      if (window.scrollY < window.innerHeight * 0.9) {
+        isMouseDown = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      isMouseDown = false;
+    });
+
+    // Touch support for mobile drag
+    window.addEventListener('touchstart', (e) => {
+      if (e.target.closest('a, button, input, textarea, .top-nav')) return;
+      if (e.touches.length === 1 && window.scrollY < window.innerHeight * 0.9) {
+        isMouseDown = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (isMouseDown && e.touches.length === 1) {
+        const dx = e.touches[0].clientX - lastX;
+        const dy = e.touches[0].clientY - lastY;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+
+        this.targetUserRotation.y += dx * 0.006;
+        this.targetUserRotation.x += dy * 0.006;
+        this.targetUserRotation.x = Math.max(-1.2, Math.min(1.2, this.targetUserRotation.x));
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isMouseDown = false;
+    });
+  }
+
+  update(deltaTime, camera) {
+    // 1. Smoothly lerp speed multiplier on hover
+    this.speedMultiplier += (this.targetSpeedMultiplier - this.speedMultiplier) * 0.08;
+    const effectiveDelta = deltaTime * this.speedMultiplier;
+    this.time += effectiveDelta;
+
+    // 2. Smoothly damp user drag rotation
+    this.userRotation.x += (this.targetUserRotation.x - this.userRotation.x) * 0.08;
+    this.userRotation.y += (this.targetUserRotation.y - this.userRotation.y) * 0.08;
+
+    // Subtle autonomous breathing drift
+    const autoDriftX = Math.sin(this.time * 0.4) * 0.04;
+    const autoDriftY = this.time * 0.035;
+
+    this.group.rotation.x = this.userRotation.x + autoDriftX;
+    this.group.rotation.y = this.userRotation.y + autoDriftY;
+
+    // 3. Update Disk & Arc Shaders
     if (this.diskUniforms) {
       this.diskUniforms.uTime.value = this.time;
       this.diskUniforms.uCameraPos.value.copy(camera.position);
     }
-
     if (this.upperArcUniforms) {
       this.upperArcUniforms.uTime.value = this.time;
     }
@@ -180,14 +372,29 @@ export class BlackHoleSystem {
       this.lowerArcUniforms.uTime.value = this.time;
     }
 
-    // Keep occlusion disc facing the camera
+    // 4. Update Polar Jet Shaders
+    if (this.jetUniforms) {
+      this.jetUniforms.uTime.value = this.time;
+      this.jetUniforms.uSpeedMultiplier.value = this.speedMultiplier;
+    }
+
+    // 5. Keep occlusion disc facing camera
     if (this.occlusionDisk) {
       this.occlusionDisk.quaternion.copy(camera.quaternion);
     }
 
-    // Gentle differential rotation of the accretion disk
+    // 6. Differential spin of the accretion disk mesh
     if (this.diskMesh) {
-      this.diskMesh.rotation.z += deltaTime * 0.025;
+      this.diskMesh.rotation.z += effectiveDelta * 0.045;
     }
   }
+
+  setScrollProgress(progress) {
+    // When scrolling past the hero into Section 02, smoothly collapse singularity into point
+    const collapseT = Math.min(1.0, Math.max(0.0, (progress - 0.35) / 0.45));
+    const scale = 1.0 - collapseT;
+    this.group.scale.setScalar(Math.max(scale, 0.0001));
+    this.group.visible = scale > 0.002;
+  }
 }
+

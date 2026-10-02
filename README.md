@@ -28,17 +28,28 @@ Rather than adopting a static resume format, this project represents an **end-to
 
 ## Visual Showcase
 
-### 01 — Kerr Black Hole Singularity & Code Accretion Disk
-The visual source of truth: A relativistic Kerr Black Hole with dynamic gravitational lensing, an intense Doppler-beamed accretion disk, and orbiting procedural firmware, C++ DSP algorithms, and LeetCode routines being consumed under simulated gravity. Anchored in the bottom-left is the minimal typography block floating over flowing code.
+### 01 — Centered Kerr Black Hole with Dual Relativistic Plasma Jets
+The visual source of truth: An astrophysically accurate supermassive **Kerr Singularity** positioned dead-center, flanked by **twin relativistic gas/plasma jets** erupting along its magnetic poles (north and south) at near light-speed. 
+- **Sky of 7,000+ Stars:** Multi-spectral celestial field (O/B ionized blue, A diamond white, G solar, K amber, M red) with realistic scintillation.
+- **Hover Acceleration:** Hovering over the singularity accelerates disk spin and particle ejection by **2.5×**.
+- **Click-and-Drag 3D Rotation:** Full interactive control over orbital pitch and yaw with smooth inertial damping.
+- **Normal Scrolling:** Smooth mouse-wheel scrolling is preserved without interruption.
 
-![Kerr Black Hole Hero Section](docs/images/01_hero_blackhole.png)
+| Centered Singularity & Dual Relativistic Jets | Interactive 3D Click-and-Drag Rotation |
+| :---: | :---: |
+| ![Centered Kerr Black Hole with Jets](docs/images/01_hero_blackhole.png) | ![Interactive 3D Rotation](docs/images/01_hero_drag_rotated.png) |
 
 ---
 
-### 02 — Architect Identity & System Profile
-Minimalist technical introduction featuring an authentic ASCII terminal readout specifying engineering disciplines, hardware focus, and live system status.
+### 02 — Scroll-Driven Starfield Scattering & Side-Margin Framing
+As the user scrolls down from the hero:
+1. **Dynamic Outward Scatter:** Relativistic shockwaves cause the stars to explode outward radially during mid-scroll.
+2. **Side-Margin Migration:** 7,000 stars seamlessly migrate into two luminous columns flanking the left and right edges of the screen ($|X_{ndc}| \in [0.62, 0.98]$), completely clearing the central reading corridor.
+3. **Persistent Viewport Anchoring:** Stars remain anchored along the left and right margins throughout all subsequent sections (Identity, Selected Systems, Engineering Stack, Build Log, Achievements, Contact Reactor), gently scintillating as the user scrolls.
 
-![Architect Identity & System Profile](docs/images/02_identity_profile.png)
+| Mid-Scroll Outward Star Scatter | Persistent Side-Margin Framing (Identity Section) |
+| :---: | :---: |
+| ![Mid-Scroll Starfield Scatter](docs/images/01_stars_scatter_margins.png) | ![Identity Framed by Stars](docs/images/02_identity_profile.png) |
 
 ---
 

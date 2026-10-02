@@ -186,3 +186,136 @@ export const lensingArcFragmentShader = `
     gl_FragColor = vec4(finalColor, alpha);
   }
 `;
+
+/**
+ * Relativistic Polar Plasma Jet Shaders (Blandford-Znajek Synchrotron Beams)
+ * Collimated, glowing magnetic outflow perpendicular to accretion disk along Z axis
+ */
+export const polarJetBeamVertexShader = `
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vLocalPos;
+
+  uniform float uTime;
+  uniform float uSpeedMultiplier;
+
+  void main() {
+    vUv = uv;
+    vNormal = normalize(normalMatrix * normal);
+    vec3 pos = position;
+
+    // Helical wave perturbations along the jet column (standing along Z axis)
+    float wavePhase = pos.z * 1.4 - uTime * 5.0 * uSpeedMultiplier;
+    float waveAmp = 0.05 * (abs(pos.z) / 22.0);
+    pos.x += sin(wavePhase) * waveAmp;
+    pos.y += cos(wavePhase) * waveAmp;
+
+    vLocalPos = pos;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+  }
+`;
+
+export const polarJetBeamFragmentShader = `
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vLocalPos;
+
+  uniform float uTime;
+  uniform float uSpeedMultiplier;
+
+  void main() {
+    // vUv.y: 0.0 at base (near singularity), 1.0 at distant tip
+    float distNorm = vUv.y;
+    
+    // Core intensity falloff from base to tip
+    float lengthFade = smoothstep(0.0, 0.06, distNorm) * smoothstep(1.0, 0.45, distNorm);
+    
+    // Fresnel / rim glow for slender cylindrical beam volume
+    vec3 viewDir = vec3(0.0, 0.0, 1.0);
+    float rim = 1.0 - abs(dot(vNormal, viewDir));
+    float radialCore = pow(1.0 - abs(vUv.x - 0.5) * 2.0, 2.8);
+
+    // Shock diamonds: periodic relativistic compression nodes
+    float shockNodes = 0.85 + 0.35 * pow(abs(sin(distNorm * 20.0 - uTime * 7.0 * uSpeedMultiplier)), 3.0);
+    
+    // Fast turbulent plasma ripples
+    float ripple = 0.92 + 0.18 * sin(distNorm * 30.0 - uTime * 12.0 * uSpeedMultiplier + vUv.x * 10.0);
+
+    // Color gradient:
+    // Base: Electric cyan (#38bdf8) with brilliant white hot center
+    // Mid: Neon cyan-blue
+    // Apex: Celestial ultraviolet (#c084fc)
+    vec3 colCore = vec3(0.80, 0.95, 1.0);
+    vec3 colCyan = vec3(0.22, 0.74, 0.97); // #38bdf8
+    vec3 colPurple = vec3(0.72, 0.32, 0.96); // #c084fc
+    vec3 colIndigo = vec3(0.12, 0.08, 0.35);
+
+    vec3 beamColor = mix(colCore, colCyan, smoothstep(0.0, 0.25, distNorm));
+    beamColor = mix(beamColor, colPurple, smoothstep(0.25, 0.75, distNorm));
+    beamColor = mix(beamColor, colIndigo, smoothstep(0.75, 1.0, distNorm));
+
+    float alpha = (radialCore * 0.75 + rim * 0.35) * lengthFade * shockNodes * ripple;
+    alpha = clamp(alpha * 1.1, 0.0, 0.90);
+
+    gl_FragColor = vec4(beamColor * 1.4, alpha);
+  }
+`;
+
+export const polarJetParticleVertexShader = `
+  attribute float size;
+  attribute float phase;
+  attribute float progress;
+  attribute float poleSign; // +1.0 for North jet, -1.0 for South jet
+
+  varying vec3 vColor;
+  varying float vAlpha;
+
+  uniform float uTime;
+  uniform float uSpeedMultiplier;
+
+  void main() {
+    // Current particle position along helical magnetic vortex
+    float t = fract(progress + uTime * 0.26 * uSpeedMultiplier);
+    
+    // Outflow distance along Z axis (from radius ~3.4 out to 26.0)
+    float zDist = (3.4 + t * 23.0) * poleSign;
+    
+    // Helical spiral along magnetic field line
+    float spiralAngle = phase + t * 28.0 * uSpeedMultiplier;
+    float spiralRadius = 0.15 + pow(t, 0.75) * 1.15;
+
+    vec3 localPos = vec3(
+      cos(spiralAngle) * spiralRadius,
+      sin(spiralAngle) * spiralRadius,
+      zDist
+    );
+
+    // Color: cyan near base, purple near apex
+    vec3 cCyan = vec3(0.30, 0.85, 1.0);
+    vec3 cPurple = vec3(0.75, 0.40, 1.0);
+    vColor = mix(cCyan, cPurple, t);
+
+    // Smooth entry and exit fading
+    vAlpha = smoothstep(0.0, 0.12, t) * smoothstep(1.0, 0.55, t) * 0.85;
+
+    vec4 mvPos = modelViewMatrix * vec4(localPos, 1.0);
+    // Delicate, crisp point sprite size
+    gl_PointSize = size * (1.0 - t * 0.35) * (75.0 / -mvPos.z);
+    gl_Position = projectionMatrix * mvPos;
+  }
+`;
+
+export const polarJetParticleFragmentShader = `
+  varying vec3 vColor;
+  varying float vAlpha;
+
+  void main() {
+    vec2 coord = gl_PointCoord - vec2(0.5);
+    float dist = length(coord);
+    if (dist > 0.5) discard;
+
+    float glow = exp(-dist * dist * 12.0);
+    gl_FragColor = vec4(vColor * 1.6, vAlpha * glow);
+  }
+`;
+
