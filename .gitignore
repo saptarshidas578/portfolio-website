@@ -27,3 +27,6 @@ Thumbs.db
 capture*.js
 *_check.png
 mobile_*.png
+
+# Netlify local configuration
+.netlify/
