@@ -409,15 +409,18 @@ export class CaseStudyController {
 
     if (this.overlay) {
       this.overlay.classList.add('active');
+      this.overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden'; // Lock background scroll
       this.isOpen = true;
       this.overlay.scrollTop = 0;
+      if (this.closeBtn) this.closeBtn.focus();
     }
   }
 
   close() {
     if (this.overlay) {
       this.overlay.classList.remove('active');
+      this.overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = ''; // Restore background scroll
       this.isOpen = false;
       this.currentProject = null;

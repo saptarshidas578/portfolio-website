@@ -151,37 +151,36 @@ where $R = 3.6$ is the major radius, $r = 1.35$ is the minor radius, and $q = \f
 ```text
 portfolio-website/
 ├── index.html                   # Semantic HTML5 single-page application & SEO metadata
+├── netlify.toml                 # Production Netlify build & security headers
 ├── vite.config.js               # Fast Vite configuration
 ├── package.json                 # Dependency manifest and scripts
 ├── .gitignore                   # Strict version control ignore rules
 ├── public/
-│   └── assets/                  # High-resolution SVG system blueprints
+│   └── assets/                  # High-resolution SVG blueprints, portrait & contact video
 │       ├── smart_ac_hardware.svg
 │       ├── esp32_smart_clock.svg
 │       ├── ai_interview_assistant.svg
-│       └── air_whiteboard_cv.svg
+│       ├── air_whiteboard_cv.svg
+│       ├── saptarshi_profile.jpg
+│       ├── first_touch_portrait.mp4
+│       ├── first_touch_portrait_poster.jpg
+│       └── pcb/                 # High-density EDA PCB artifacts
 ├── docs/
 │   └── images/                  # High-definition visual documentation previews
-│       ├── 01_hero_blackhole.png
-│       ├── 02_identity_profile.png
-│       ├── 03_selected_systems.png
-│       ├── 04_case_study_overlay.png
-│       ├── 05_engineering_constellation.png
-│       ├── 06_build_log.png
-│       ├── 07_tokamak_quantum_reactor.png
-│       └── 08_reactor_hyperdrive.png
 └── src/
     ├── main.js                  # Application lifecycle, scroll rigs & audio synthesis
     ├── style.css                # Dark cosmic design system, typography & glassmorphism
+    ├── shaders/                 # Relativistic Kerr black hole GLSL shaders
     └── systems/
         ├── BlackHoleSystem.js           # 3D Kerr black hole & accretion shader
-        ├── CodeStreamSystem.js          # Procedural relativistic code streams
         ├── CaseStudyController.js       # Dynamic 7-stage case study modal engine
+        ├── CodeStreamSystem.js          # Procedural relativistic code streams
         ├── ConstellationSystem.js       # 60 FPS neural/circuit node constellation
-        ├── QuantumReactorSystem.js      # 3D Tokamak fusion reactor with excitation
+        ├── CosmicAudioSynthesizer.js    # Web Audio API ambient spatial sound engine
+        ├── NerdStatsOverlay.js          # Real-time Stats for Nerds telemetry HUD
+        ├── PostProcessingPipeline.js    # Cinematic bloom & dispersion pipeline
         ├── ScrollCameraRig.js           # Smooth scroll camera controller
-        ├── StarfieldSystem.js           # Deep space cosmic starfield
-        └── CosmicAudioSynthesizer.js    # Web Audio API ambient spatial sound engine
+        └── StarfieldSystem.js           # Deep space cosmic starfield
 ```
 
 ---

@@ -56,21 +56,6 @@ export class BlackHoleSystem {
   }
 
   /**
-   * Smoothly collapse into singularity as user scrolls past the event horizon
-   */
-  setScrollProgress(progress) {
-    if (progress > 0.55) {
-      const fade = Math.max(0.0, 1.0 - (progress - 0.55) / 0.40);
-      const scale = Math.pow(fade, 1.5);
-      this.group.scale.setScalar(scale);
-      this.group.visible = scale > 0.005;
-    } else {
-      this.group.scale.setScalar(1.0);
-      this.group.visible = true;
-    }
-  }
-
-  /**
    * Solid pitch-black Event Horizon Sphere (Absolute Schwarzschild Shadow)
    */
   initEventHorizon() {
@@ -78,6 +63,7 @@ export class BlackHoleSystem {
     
     const material = new THREE.MeshBasicMaterial({
       color: 0x000000,
+      side: THREE.DoubleSide,
       depthWrite: true,
       depthTest: true
     });
@@ -390,11 +376,11 @@ export class BlackHoleSystem {
   }
 
   setScrollProgress(progress) {
-    // When scrolling past the hero into Section 02, smoothly collapse singularity into point
-    const collapseT = Math.min(1.0, Math.max(0.0, (progress - 0.35) / 0.45));
-    const scale = 1.0 - collapseT;
-    this.group.scale.setScalar(Math.max(scale, 0.0001));
-    this.group.visible = scale > 0.002;
+    // Keep physical scale strictly 1.0 - eliminates conflicting dolly-zoom shrinking
+    this.group.scale.setScalar(1.0);
+
+    // When fully submerged into the event horizon past progress 0.88, hide group for 60 FPS performance
+    this.group.visible = progress < 0.88;
   }
 }
 

@@ -85,47 +85,54 @@ export class ScrollCameraRig {
 
   update(deltaTime) {
     const prevScroll = this.scrollProgress;
-    // Responsive, silky smooth lerp
-    this.scrollProgress += (this.targetScrollProgress - this.scrollProgress) * 0.12;
+    // Responsive, silky smooth lerp during hero transition; lock to 1.0 when deep in portfolio
+    if (this.targetScrollProgress >= 0.99 && typeof window !== 'undefined' && window.scrollY > window.innerHeight * 1.2) {
+      this.scrollProgress = 1.0;
+    } else {
+      this.scrollProgress += (this.targetScrollProgress - this.scrollProgress) * 0.18;
+    }
     this.scrollVelocity = (this.scrollProgress - prevScroll) / Math.max(deltaTime, 0.001);
 
     this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.06;
     this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.06;
 
-    const t = Math.max(0.0, Math.min(0.999, this.scrollProgress));
+    const t = Math.max(0.0, Math.min(1.0, this.scrollProgress));
 
-    const pos = this.cameraCurve.getPoint(t);
-    const lookAt = this.lookAtCurve.getPoint(t);
+    // Smooth monotonic cubic ease (zero overshoot, zero ripple)
+    const smoothT = t * t * (3.0 - 2.0 * t);
 
-    const parallaxDamping = (1.0 - t * 0.85);
-    const parallaxOffsetX = this.mouse.x * 0.65 * parallaxDamping;
-    const parallaxOffsetY = this.mouse.y * 0.50 * parallaxDamping;
+    // Subtle parallax that gracefully damps to zero as we penetrate the horizon
+    const parallaxDamping = 1.0 - smoothT * 0.95;
+    const parallaxOffsetX = this.mouse.x * 0.45 * parallaxDamping;
+    const parallaxOffsetY = this.mouse.y * 0.35 * parallaxDamping;
+
+    // Strict monotonic forward flight path along Z
+    let camX = parallaxOffsetX;
+    let camY = THREE.MathUtils.lerp(1.0, 0.0, smoothT) + parallaxOffsetY;
+    let camZ = THREE.MathUtils.lerp(21.0, 0.4, smoothT);
 
     const o = this.targetOrigin;
     if (this.currentPreset === 'ACCRETION' && t < 0.05) {
-      pos.set(o.x - 12.0, o.y + 0.4, 2.5);
-      lookAt.set(o.x, o.y, 0.0);
+      camX = o.x - 12.0 + parallaxOffsetX;
+      camY = o.y + 0.4 + parallaxOffsetY;
+      camZ = 2.5;
     } else if (this.currentPreset === 'POLAR' && t < 0.05) {
-      pos.set(o.x, o.y + 18.0, 1.2);
-      lookAt.set(o.x, o.y, 0.0);
+      camX = o.x + parallaxOffsetX;
+      camY = o.y + 18.0 + parallaxOffsetY;
+      camZ = 1.2;
     }
 
-    this.camera.position.set(
-      pos.x + parallaxOffsetX,
-      pos.y + parallaxOffsetY,
-      pos.z
-    );
+    this.camera.position.set(camX, camY, camZ);
+    this.camera.lookAt(0.0, 0.0, 0.0);
 
-    this.camera.lookAt(lookAt.x, lookAt.y, lookAt.z);
-
-    const targetFov = this.baseFov + Math.pow(t, 2.0) * 16.0 + Math.min(Math.abs(this.scrollVelocity) * 2.0, 8.0);
-    this.camera.fov += (targetFov - this.camera.fov) * 0.1;
+    // Rock-solid uniform 45 deg FOV - eliminates erratic velocity zoom in/out oscillation
+    this.camera.fov = 45.0;
     this.camera.updateProjectionMatrix();
 
     return {
       progress: this.scrollProgress,
       velocity: this.scrollVelocity,
-      inSingularity: this.scrollProgress > 0.88
+      inSingularity: this.scrollProgress > 0.85
     };
   }
 }

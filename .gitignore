@@ -24,5 +24,6 @@ dist/
 Thumbs.db
 
 # Headless capture & scratch scripts
-capture.js
-capture_contact.js
+capture*.js
+*_check.png
+mobile_*.png

@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saptarshi Das // Electrical Engineering · Embedded Systems · AI</title>
   <meta name="description" content="Portfolio of Saptarshi Das, an Electrical Engineering undergraduate building systems at the intersection of hardware, software and intelligence. Dual-core FreeRTOS, custom AC power sensing, algorithms, and multimodal AI.">
+  <meta name="author" content="Saptarshi Das">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://saptarshidas578.github.io/">
+
+  <!-- Open Graph / Facebook / LinkedIn Social Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saptarshidas578.github.io/">
+  <meta property="og:site_name" content="Saptarshi Das Portfolio">
+  <meta property="og:title" content="Saptarshi Das // Electrical Engineering · Embedded Systems · AI">
+  <meta property="og:description" content="Interactive 3D WebGL Portfolio of Saptarshi Das — Embedded Systems, Dual-Core FreeRTOS, Analog Signal Acquisition, Algorithms & Edge AI.">
+  <meta property="og:image" content="/assets/first_touch_portrait_poster.jpg">
+  <meta property="og:image:alt" content="Saptarshi Das — Engineering Architecture Portfolio">
+
+  <!-- Twitter / X Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Saptarshi Das // Electrical Engineering · Embedded Systems · AI">
+  <meta name="twitter:description" content="Systems at the intersection of hardware, software, and intelligence. FreeRTOS, custom AC sensing, and multimodal edge AI.">
+  <meta name="twitter:image" content="/assets/first_touch_portrait_poster.jpg">
+
+  <!-- Preconnect to Google Fonts for High-Performance Parallel Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='42' fill='none' stroke='%2338bdf8' stroke-width='4'/><text x='50' y='60' font-size='32' text-anchor='middle' fill='%23fbbf24' font-family='monospace' font-weight='bold'>SD</text></svg>">
   <link rel="stylesheet" href="/src/style.css">
 </head>
@@ -24,7 +50,7 @@
 
     <nav class="nav-links" id="nav-links">
       <a href="#identity" class="nav-link">IDENTITY</a>
-      <a href="#projects" class="nav-link">SELECTED SYSTEMS</a>
+      <a href="#projects" class="nav-link">BUILD ARCHIVE</a>
       <a href="#stack" class="nav-link">ENGINEERING STACK</a>
       <a href="#build-log" class="nav-link">BUILD LOG</a>
       <a href="#achievements" class="nav-link">ACHIEVEMENTS</a>
@@ -51,10 +77,16 @@
         </svg>
       </a>
 
-      <button id="btn-sound" class="btn-sound-toggle" title="Toggle Procedural Cosmic Drone">
+      <button id="btn-nerd-stats" class="btn-nerd-stats" title="Toggle Stats for Nerds Telemetry (Shortcut: Shift+N)" aria-label="Toggle Stats for Nerds Telemetry">
+        <span class="nerd-stats-icon">📊</span>
+        <span class="nerd-stats-label">STATS FOR NERDS</span>
+      </button>
+
+      <button id="btn-sound" class="btn-sound-toggle" title="Toggle Procedural Cosmic Drone" aria-label="Toggle Procedural Cosmic Drone Audio">
         <span class="sound-icon">🔈</span>
         <span id="sound-label">AUDIO: OFF</span>
       </button>
+
     </div>
   </header>
 
@@ -89,329 +121,710 @@
   <!-- MAIN SYSTEM CONTENT STREAM -->
   <main class="system-stream" id="system-stream">
 
-    <!-- 02 — IDENTITY (Minimal & High-Signal Readout) -->
+    <!-- 02 — ABOUT / ARCHITECT IDENTITY ("The Person Behind The System") -->
     <section class="identity-section" id="identity">
-      <div class="identity-container">
+      
+      <!-- Top Section Header & Status Telemetry -->
+      <div class="identity-top-header">
+        <div class="identity-badge-group">
+          <span class="identity-badge">// 02 — ARCHITECT IDENTITY</span>
+          <span class="identity-subtag">THE PERSON BEHIND THE SYSTEM</span>
+        </div>
+        <div class="identity-status-pill">
+          <span class="status-pulse-dot"></span>
+          <span class="status-pill-text">ACTIVE // INDIA</span>
+        </div>
+      </div>
+
+      <!-- Main Primary Row: Editorial Portrait + Display Statement & Bio -->
+      <div class="identity-primary-grid">
         
+        <!-- Left: Editorial Portrait Card -->
+        <div class="identity-portrait-frame">
+          <div class="portrait-card">
+            <div class="portrait-image-wrapper">
+              <img src="/assets/saptarshi_profile.jpg" alt="Saptarshi Das — Electrical &amp; Computer Science Engineering" class="portrait-image" loading="eager" width="480" height="600">
+              <div class="portrait-vignette-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Typography Statement & 3-Paragraph Bio -->
         <div class="identity-content-block">
-          <div class="identity-badge">// 02 — ARCHITECT IDENTITY</div>
-          <h2 class="identity-heading">SAPTARSHI DAS</h2>
           
-          <div class="identity-disciplines">
-            <span class="discipline-primary">ELECTRICAL ENGINEERING</span>
-            <span class="discipline-separator">·</span>
-            <span class="discipline-secondary">Embedded Systems · Software · AI</span>
+          <h2 class="identity-statement-display">
+            I build systems where physical electrons, firmware, and algorithms meet.
+          </h2>
+
+          <div class="identity-bio-paragraphs">
+            <p class="bio-para">
+              I am an Electrical and Computer Science Engineering undergraduate driven by a desire to understand how complex machines function from the silicon layer upward. Rather than treating microprocessors and computing systems as abstractions, my work starts at the physical boundary where voltage levels, magnetic induction, and microsecond timing constraints dictate execution.
+            </p>
+            <p class="bio-para">
+              My engineering builds range from hand-winding 1000:1 toroidal current transformer cores and designing discrete analog front-ends for 230V AC True-RMS sensing, to architecting deterministic FreeRTOS firmware that pins jitter-critical 32-bit I2S audio DMA synthesis to dedicated hardware cores. I thrive in the constraints of real hardware—where electrons produce noise, memory is bounded, and latency is physically measured.
+            </p>
+            <p class="bio-para">
+              On the software horizon, I combine low-level C++ with competitive algorithmic problem-solving and edge intelligence—engineering 60 FPS skeletal gesture tracking pipelines, coordinate Kalman filtering, and multimodal speech-vision architectures. The guiding principle behind every system I assemble is clear: bridge tangible physical physics with elegant mathematical computation.
+            </p>
           </div>
 
-          <p class="identity-statement">
-            I build systems at the intersection of hardware, software and intelligence.
-          </p>
-
-          <p class="identity-narrative">
-            From hand-winding toroidal current transformer cores and writing bare-metal FreeRTOS drivers to optimizing graph traversal complexities and deploying edge computer vision models, my focus is bridging physical electrons with mathematical computation.
-          </p>
-        </div>
-
-        <!-- The Exact Technical Readout Box Requested -->
-        <div class="system-profile-box">
-          <div class="profile-box-header">
-            <span>SYSTEM PROFILE</span>
-            <span class="profile-box-rev">REV 2026.1</span>
-          </div>
-          
-          <div class="profile-box-body">
-            <div class="profile-row">
-              <span class="p-key">FIELD</span>
-              <span class="p-val">ELECTRICAL ENGINEERING</span>
-            </div>
-            <div class="profile-row">
-              <span class="p-key">FOCUS</span>
-              <span class="p-val">EMBEDDED / SOFTWARE / AI</span>
-            </div>
-            <div class="profile-row">
-              <span class="p-key">CURRENT</span>
-              <span class="p-val">BUILDING</span>
-            </div>
-            <div class="profile-row">
-              <span class="p-key">LOCATION</span>
-              <span class="p-val">INDIA</span>
-            </div>
-            
-            <div class="profile-divider"></div>
-            
-            <div class="profile-row status-row">
-              <span class="status-indicator">●</span>
-              <span class="status-text">SYSTEM ONLINE</span>
-            </div>
-          </div>
         </div>
 
       </div>
-    </section>
 
-    <!-- 03 — SELECTED SYSTEMS (Massive Interactive Project Entries) -->
-    <section class="section-container" id="projects">
-      <div class="section-header">
-        <div class="section-tag">// 03 — FLAGSHIP ARCHITECTURES</div>
-        <h2 class="section-title">SELECTED SYSTEMS</h2>
-        <p class="section-desc">
-          Four flagship engineering builds taking physical components, custom analog circuitry, low-level microcontrollers, and artificial intelligence to completion.
-        </p>
+      <!-- Engineering DNA: Process Methodology Flow (Horizontal Stepper) -->
+      <div class="engineering-dna-block">
+        <div class="dna-header">
+          <div class="dna-tag-group">
+            <span class="dna-label">// PROCESS ARCHITECTURE</span>
+            <h3 class="dna-title">ENGINEERING DNA</h3>
+          </div>
+          <span class="dna-caption">HOW A SYSTEM MOVES FROM FIRST-PRINCIPLES PHYSICS TO PRODUCTION</span>
+        </div>
+
+        <div class="dna-pipeline">
+          <div class="dna-step">
+            <span class="dna-step-num">01</span>
+            <h4 class="dna-step-name">FIRST PRINCIPLES</h4>
+            <p class="dna-step-desc">Deconstruct Maxwell's equations, thermal dissipation limits, and signal-to-noise ratio.</p>
+          </div>
+
+          <div class="dna-step-arrow">&rarr;</div>
+
+          <div class="dna-step">
+            <span class="dna-step-num">02</span>
+            <h4 class="dna-step-name">SCHEMATIC &amp; MATH</h4>
+            <p class="dna-step-desc">Derive transfer functions, burden resistances, Simpson's rule integrals, and algorithmic bounds.</p>
+          </div>
+
+          <div class="dna-step-arrow">&rarr;</div>
+
+          <div class="dna-step">
+            <span class="dna-step-num">03</span>
+            <h4 class="dna-step-name">BARE-METAL KERNEL</h4>
+            <p class="dna-step-desc">Write deterministic C++, configure DMA ring buffers, pin FreeRTOS tasks, and isolate interrupts.</p>
+          </div>
+
+          <div class="dna-step-arrow">&rarr;</div>
+
+          <div class="dna-step">
+            <span class="dna-step-num">04</span>
+            <h4 class="dna-step-name">BENCH TESTING</h4>
+            <p class="dna-step-desc">Probe with digital oscilloscopes, calibrate ADC DC-bias offsets, and profile microsecond execution jitter.</p>
+          </div>
+
+          <div class="dna-step-arrow">&rarr;</div>
+
+          <div class="dna-step">
+            <span class="dna-step-num">05</span>
+            <h4 class="dna-step-name">DEPLOY &amp; HARDEN</h4>
+            <p class="dna-step-desc">Deploy closed-loop telemetry, implement fail-safe galvanic trip interlocks, and benchmark 60 FPS performance.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="selected-systems-container">
-
-        <!-- System 01: Intelligent Smart Grid & AC Power System -->
-        <article class="system-giant-card" id="sys-smart-grid">
-          <div class="system-card-topbar">
-            <span class="system-index">01 // SELECTED SYSTEM</span>
-            <span class="system-status-chip online">HARDWARE DEPLOYED</span>
+      <!-- Two-Column Balanced Sub-Grid: Beyond The Code + Verified Signals -->
+      <div class="identity-sub-grid">
+        
+        <!-- Left: Beyond The Code -->
+        <div class="beyond-code-card">
+          <div class="panel-header">
+            <span class="panel-tag">// PHYSICAL CRAFT &amp; DISCIPLINE</span>
+            <h3 class="panel-title">BEYOND THE CODE</h3>
           </div>
-
-          <div class="system-card-hero">
-            <div class="system-canvas-wrapper interactive-canvas">
-              <img src="/assets/smart_ac_hardware.svg" alt="Smart AC Control System and CT Sensing Circuit" class="system-vector-visual" loading="lazy">
-              <div class="interactive-hover-banner">
-                <span class="hover-pulse-dot"></span>
-                <span>HOVER TO SIMULATE CURRENT FLOW &bull; LOAD RELAYS ARMED</span>
+          <div class="beyond-items">
+            <div class="beyond-item">
+              <span class="beyond-icon">&cir;</span>
+              <div class="beyond-text">
+                <strong>Toroidal Magnetic Winding:</strong> The tactile focus of hand-winding 1000 turns of fine enameled copper magnet wire onto miniature ferrite cores with uniform tension.
               </div>
             </div>
+            <div class="beyond-item">
+              <span class="beyond-icon">&cir;</span>
+              <div class="beyond-text">
+                <strong>Electro-Acoustic Horology:</strong> Fascination with mechanical pendulum clocks, acoustic chime physics, and synthesizing Westminster bell harmonics through 32-bit DACs.
+              </div>
+            </div>
+            <div class="beyond-item">
+              <span class="beyond-icon">&cir;</span>
+              <div class="beyond-text">
+                <strong>Daily Algorithmic Rigor:</strong> Treating competitive DSA problem-solving as daily mental fitness—reasoning through graph traversals, memoization bounds, and edge cases.
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <div class="system-content-panel">
-              <div class="sys-domain-tag">POWER ELECTRONICS &bull; EMBEDDED IOT</div>
-              <h3 class="sys-title">INTELLIGENT SMART GRID</h3>
-              <h4 class="sys-subtitle">ESP32 POWER MANAGEMENT &amp; AC SENSING SYSTEM</h4>
+        <!-- Right: Verified Signals -->
+        <div class="verified-signals-card">
+          <div class="panel-header">
+            <span class="panel-tag">// EXTERNAL SIGNALS</span>
+            <h3 class="panel-title">VERIFIED REPOSITORIES &amp; PROFILES</h3>
+          </div>
+          <div class="signals-list">
+            <a href="https://github.com/saptarshidas578" target="_blank" rel="noopener noreferrer" class="signal-row">
+              <div class="signal-info">
+                <span class="signal-name">GITHUB</span>
+                <span class="signal-desc">Open-source firmware, AC power monitoring, audio synthesis &amp; computer vision</span>
+              </div>
+              <span class="signal-handle">@saptarshidas578 &nearr;</span>
+            </a>
+            <a href="https://leetcode.com/u/Saptarshi2007/" target="_blank" rel="noopener noreferrer" class="signal-row">
+              <div class="signal-info">
+                <span class="signal-name">LEETCODE</span>
+                <span class="signal-desc">Competitive DSA problem solving with continuous LeetPush GitHub automation</span>
+              </div>
+              <span class="signal-handle">@Saptarshi2007 &nearr;</span>
+            </a>
+            <a href="https://www.linkedin.com/in/saptarshi-das-3255673a1/" target="_blank" rel="noopener noreferrer" class="signal-row">
+              <div class="signal-info">
+                <span class="signal-name">LINKEDIN</span>
+                <span class="signal-desc">Professional engineering network, academic background &amp; technical milestones</span>
+              </div>
+              <span class="signal-handle">Saptarshi Das &nearr;</span>
+            </a>
+          </div>
+        </div>
 
-              <p class="sys-description">
-                A non-invasive, galvanic-isolated AC energy monitor and safety appliance controller. Employs a hand-wound 1000:1 toroidal current transformer coil with calibrated burden resistor and discrete AC voltage divider with DC bias offsetting to measure real-time power, current draw, and power factor. Features thermal cutoff protection and automated Discord webhook alerts.
+      </div>
+
+    </section>
+
+    <!-- SECTION TRANSITION: FROM SYSTEM IDENTITY TO PHYSICAL BUILDS -->
+    <div class="archive-transition-bridge">
+      <div class="bridge-line"></div>
+      <div class="bridge-tag">
+        <span class="bridge-dot"></span>
+        <span>ONE SYSTEM ARCHITECTURE &bull; DIVERSIFYING INTO PHYSICAL BUILDS</span>
+      </div>
+      <div class="bridge-line"></div>
+    </div>
+
+    <!-- 03 — BUILD ARCHIVE (Engineering Dossiers & Flagship Architectures) -->
+    <section class="archive-section" id="projects">
+      <div class="archive-header">
+        <div class="archive-header-left">
+          <div class="section-tag">// 03 — BUILD ARCHIVE</div>
+          <h2 class="archive-main-title">SELECTED BUILDS</h2>
+          <p class="archive-lead-desc">
+            Physical prototypes, custom analog front-ends, bare-metal kernels, and real-time computer vision engines engineered from first principles. Each system is documented with verified schematics, circuit derivations, and measured benchmarks.
+          </p>
+        </div>
+
+        <!-- Monospace Domain Filter Controls -->
+        <div class="archive-filter-bar" id="archive-filters" role="tablist" aria-label="Project Domain Filter">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+            <span class="filter-code">ALL</span>
+            <span class="filter-count">// 04</span>
+          </button>
+          <button class="filter-btn" data-filter="hardware" role="tab" aria-selected="false">
+            <span class="filter-code">POWER &amp; EMBEDDED</span>
+            <span class="filter-count">// 02</span>
+          </button>
+          <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">
+            <span class="filter-code">EDGE AI &amp; CV</span>
+            <span class="filter-count">// 02</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="archive-builds-stream">
+
+        <!-- ===================================================================
+             FEATURED SHOWCASE DOSSIER: BUILD 01 — INTELLIGENT SMART GRID
+             =================================================================== -->
+        <article class="featured-build-dossier build-entry" data-category="hardware" id="build-smart-grid">
+          
+          <!-- Compact Technical Identity Strip -->
+          <div class="tech-identity-strip">
+            <div class="identity-item">
+              <span class="identity-lbl">IDENTIFIER</span>
+              <span class="identity-val highlight-gold">BUILD // 01 &bull; FEATURED</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">STATUS</span>
+              <span class="identity-val status-online"><span class="status-pulse-dot"></span>BENCH TESTED &amp; DEPLOYED</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">DOMAIN</span>
+              <span class="identity-val">POWER ELECTRONICS &bull; EMBEDDED DSP</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">TIMELINE</span>
+              <span class="identity-val">2026</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">CORE HARDWARE</span>
+              <span class="identity-val">ESP32 &bull; 1000:1 TOROIDAL CT &bull; 25A OPTO-SSR</span>
+            </div>
+          </div>
+
+          <!-- Featured Showcase Headline & Short Descriptor -->
+          <div class="featured-header-row">
+            <div class="featured-title-wrap">
+              <span class="featured-lead-kicker">POWER TELEMETRY &bull; SUB-CYCLE SAFETY INTERLOCK</span>
+              <h3 class="featured-project-name">INTELLIGENT SMART GRID &amp; AC SENSING SYSTEM</h3>
+              <p class="featured-technical-descriptor">
+                A non-invasive 230V AC mains energy monitor and autonomous appliance safety interlock. Employs a hand-wound 1000:1 toroidal current transformer with active 1.65V DC-bias op-amp wave-shifting, computing true-RMS current via numerical Simpson's integration with sub-cycle overcurrent and thermal relay tripping.
               </p>
+            </div>
+          </div>
 
-              <div class="sys-metrics-ticker">
-                <div class="metric-item">
-                  <span class="m-val">16.0 A</span>
-                  <span class="m-lbl">CONTINUOUS LOAD</span>
-                </div>
-                <div class="metric-item">
-                  <span class="m-val">&lt; 18.5 ms</span>
-                  <span class="m-lbl">TRIP LATENCY</span>
-                </div>
-                <div class="metric-item">
-                  <span class="m-val">2.5 kV</span>
-                  <span class="m-lbl">GALVANIC ISOLATION</span>
-                </div>
-              </div>
-
-              <div class="sys-stack-pills">
-                <span class="s-pill">ESP32</span>
-                <span class="s-pill">Toroidal CT Coil</span>
-                <span class="s-pill">True-RMS C++</span>
-                <span class="s-pill">Isolated Relays</span>
-                <span class="s-pill">Discord Webhooks</span>
-              </div>
-
-              <div class="sys-action-row">
-                <button class="btn-case-study" data-case-study="smart-grid">
-                  <span>VIEW CASE STUDY</span>
-                  <span class="arrow-glyph">&nearr;</span>
-                </button>
-                <a href="https://github.com/saptarshidas578/Smart_ac_control_system" target="_blank" rel="noopener noreferrer" class="btn-repo-link">
-                  <span>GITHUB REPO &nearr;</span>
-                </a>
+          <!-- Large Project Visual: Real Hardware Schematic & Interactive Trace -->
+          <div class="featured-visual-box interactive-schematic">
+            <div class="schematic-canvas-frame">
+              <img src="/assets/smart_ac_hardware.svg" alt="Intelligent Smart Grid CT Coil and Analog Front-End Blueprint" class="schematic-vector-img" loading="eager">
+              <div class="schematic-telemetry-hud">
+                <span class="hud-indicator"></span>
+                <span>SCHEMATIC: TOROIDAL CT (1000:1) &bull; 68.2&Omega; BURDEN &bull; 2.5 kV GALVANIC ISOLATION &bull; ACTIVE 1.65V DC BIAS</span>
               </div>
             </div>
           </div>
+
+          <!-- 4-Part Engineering Narrative & Hardware Signal Flow -->
+          <div class="engineering-breakdown-grid">
+            <div class="breakdown-block">
+              <div class="breakdown-tag">01 // THE PROBLEM</div>
+              <p class="breakdown-body">
+                Sustained 16A AC compressor loads generate severe resistive heat dissipation in conventional inline shunts (P = I&sup2;R). Meanwhile, non-isolated sensors expose 3.3V MCU digital rails to catastrophic mains spikes, high-voltage transients, and ground loops during line switching.
+              </p>
+            </div>
+
+            <div class="breakdown-block">
+              <div class="breakdown-tag">02 // THE APPROACH</div>
+              <p class="breakdown-body">
+                Hand-wound high-permeability 1000:1 toroidal ferrite core steps 16A down to safe milliamps with 2.5 kV physical galvanic isolation. A precision 68.2&Omega; burden resistor and active 1.65V DC-bias op-amp front-end map the bipolar 50Hz sine wave into the unipolar 0–3.3V ADC range.
+              </p>
+            </div>
+          </div>
+
+          <!-- Hardware Signal Flow Diagram -->
+          <div class="signal-flow-box">
+            <div class="flow-header">
+              <span class="flow-tag">// SYSTEM ARCHITECTURE &amp; SIGNAL FLOW</span>
+              <span class="flow-type">HARDWARE INTERFACE PIPELINE</span>
+            </div>
+            <div class="flow-nodes">
+              <div class="flow-node">
+                <span class="n-type">INPUT</span>
+                <span class="n-name">MAINS 230V 50Hz</span>
+              </div>
+              <span class="flow-arrow">&rarr;</span>
+              <div class="flow-node">
+                <span class="n-type">SENSOR</span>
+                <span class="n-name">1000:1 TOROIDAL CT</span>
+              </div>
+              <span class="flow-arrow">&rarr;</span>
+              <div class="flow-node">
+                <span class="n-type">ANALOG FRONT-END</span>
+                <span class="n-name">68.2&Omega; + 1.65V BIAS</span>
+              </div>
+              <span class="flow-arrow">&rarr;</span>
+              <div class="flow-node">
+                <span class="n-type">MCU ADC</span>
+                <span class="n-name">ESP32 12-BIT ADC</span>
+              </div>
+              <span class="flow-arrow">&rarr;</span>
+              <div class="flow-node">
+                <span class="n-type">FIRMWARE DSP</span>
+                <span class="n-name">SIMPSON'S TRUE-RMS</span>
+              </div>
+              <span class="flow-arrow">&rarr;</span>
+              <div class="flow-node active">
+                <span class="n-type">ACTUATOR</span>
+                <span class="n-name">OPTO-SSR TRIP (&lt;18.5ms)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Specs & Verified Metrics -->
+          <div class="build-metrics-row">
+            <div class="metric-cell">
+              <span class="metric-num">16.0 A</span>
+              <span class="metric-lbl">CONTINUOUS RATED LOAD</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">&lt; 18.5 ms</span>
+              <span class="metric-lbl">SUB-CYCLE TRIP LATENCY</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">2.5 kV</span>
+              <span class="metric-lbl">GALVANIC ISOLATION</span>
+            </div>
+            <div class="metric-cell">
+              <span class="metric-num">98.8%</span>
+              <span class="metric-lbl">ACCURACY (vs. FLUKE 87V)</span>
+            </div>
+          </div>
+
+          <!-- Verified Action Links -->
+          <div class="build-actions-row">
+            <button class="btn-action-primary" data-case-study="smart-grid">
+              <span>INSPECT CASE STUDY</span>
+              <span class="action-glyph">&nearr;</span>
+            </button>
+            <a href="https://github.com/saptarshidas578/Smart_ac_control_system" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
+              <span class="git-icon">&bull;</span>
+              <span>GITHUB REPOSITORY &nearr;</span>
+            </a>
+          </div>
+
         </article>
 
-        <!-- System 02: ESP32 Smart Grandfather Clock -->
-        <article class="system-giant-card" id="sys-esp32-clock">
-          <div class="system-card-topbar">
-            <span class="system-index">02 // SELECTED SYSTEM</span>
-            <span class="system-status-chip online">HARDWARE VERIFIED</span>
+
+        <!-- ===================================================================
+             BUILD 02: ESP32 SMART GRANDFATHER CLOCK
+             =================================================================== -->
+        <article class="build-dossier-card build-entry" data-category="hardware" id="build-esp32-clock">
+          
+          <div class="tech-identity-strip">
+            <div class="identity-item">
+              <span class="identity-lbl">IDENTIFIER</span>
+              <span class="identity-val">BUILD // 02</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">STATUS</span>
+              <span class="identity-val status-online"><span class="status-pulse-dot"></span>HARDWARE VERIFIED &amp; RUNNING</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">DOMAIN</span>
+              <span class="identity-val">ELECTRO-ACOUSTIC HOROLOGY &bull; FREERTOS</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">TIMELINE</span>
+              <span class="identity-val">2026</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">CORE HARDWARE</span>
+              <span class="identity-val">DUAL XTENSA @ 240MHz &bull; TI PCM5100A I2S &bull; DS1307 RTC</span>
+            </div>
           </div>
 
-          <div class="system-card-hero">
-            <div class="system-canvas-wrapper interactive-canvas">
-              <img src="/assets/esp32_smart_clock.svg" alt="ESP32 Smart Grandfather Clock Hardware Blueprint" class="system-vector-visual" loading="lazy">
-              <div class="interactive-hover-banner">
-                <span class="hover-pulse-dot"></span>
-                <span>HOVER TO ANIMATE I2S AUDIO HARMONICS &bull; CORE 1 SYNTH</span>
+          <div class="build-dossier-grid">
+            <!-- Visual Left -->
+            <div class="build-visual-frame interactive-schematic">
+              <img src="/assets/esp32_smart_clock.svg" alt="ESP32 Smart Grandfather Clock Architecture Blueprint" class="schematic-vector-img" loading="lazy">
+              <div class="schematic-telemetry-hud">
+                <span class="hud-indicator"></span>
+                <span>CORE 1 PINNED I2S &bull; PCM5100A 32-BIT DAC &bull; DS1307 BATTERY BACKUP</span>
               </div>
             </div>
 
-            <div class="system-content-panel">
-              <div class="sys-domain-tag">ELECTRO-ACOUSTIC HOROLOGY &bull; FREERTOS</div>
-              <h3 class="sys-title">SMART GRANDFATHER CLOCK</h3>
-              <h4 class="sys-subtitle">DUAL-CORE FREERTOS I2S AUDIO SYNTHESIZER</h4>
+            <!-- Content Right -->
+            <div class="build-content-panel">
+              <div class="build-header-block">
+                <span class="build-kicker">DUAL-CORE FREERTOS &bull; 32-BIT I2S HARMONIC SYNTHESIS</span>
+                <h3 class="build-name">ESP32 SMART GRANDFATHER CLOCK</h3>
+                <p class="build-descriptor">
+                  Replaces traditional mechanical clock escapements with an ESP32 microcontroller synthesizing authentic multi-partial Westminster chimes. Dedicated FreeRTOS task pinning isolates 32-bit DMA audio streaming to Core 1, while Core 0 handles concurrent Wi-Fi NTP sync and DS1307 RTC fallback with 0.00 ms audio jitter.
+                </p>
+              </div>
 
-              <p class="sys-description">
-                A high-precision electro-acoustic horology instrument. Replaces traditional mechanical bell movements with an ESP32 microcontroller synthesizing authentic multi-partial Westminster chimes via an external 32-bit PCM5100A I2S DAC. Built with FreeRTOS task pinning across dual Xtensa cores to ensure zero audio underruns and zero jitter during network synchronization.
-              </p>
-
-              <div class="sys-metrics-ticker">
-                <div class="metric-item">
-                  <span class="m-val">32-Bit</span>
-                  <span class="m-lbl">I2S DAC AUDIO</span>
+              <!-- Signal Flow -->
+              <div class="signal-flow-box compact">
+                <div class="flow-header">
+                  <span class="flow-tag">// MULTI-CORE SIGNAL ARCHITECTURE</span>
                 </div>
-                <div class="metric-item">
-                  <span class="m-val">0.0 ms</span>
-                  <span class="m-lbl">AUDIO JITTER</span>
-                </div>
-                <div class="metric-item">
-                  <span class="m-val">Dual 240MHz</span>
-                  <span class="m-lbl">XTENSA LX6</span>
+                <div class="flow-nodes">
+                  <div class="flow-node">
+                    <span class="n-type">CORE 0</span>
+                    <span class="n-name">NTP / DS1307 / LED</span>
+                  </div>
+                  <span class="flow-arrow">&bull;&bull;&bull;</span>
+                  <div class="flow-node">
+                    <span class="n-type">CORE 1</span>
+                    <span class="n-name">PINNED SYNTH TASK</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node">
+                    <span class="n-type">DMA BUFFER</span>
+                    <span class="n-name">CIRCULAR I2S DMA</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node active">
+                    <span class="n-type">I2S DAC</span>
+                    <span class="n-name">PCM5100A 32-BIT</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="sys-stack-pills">
-                <span class="s-pill">Dual-Core ESP32</span>
-                <span class="s-pill">FreeRTOS</span>
-                <span class="s-pill">PCM5100A I2S DAC</span>
-                <span class="s-pill">WS2812B NeoPixel</span>
-                <span class="s-pill">DS1307 RTC</span>
+              <div class="build-metrics-row">
+                <div class="metric-cell">
+                  <span class="metric-num">32-Bit</span>
+                  <span class="metric-lbl">I2S AUDIO DAC</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">0.00 ms</span>
+                  <span class="metric-lbl">AUDIO JITTER</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">&lt; 20 ms</span>
+                  <span class="metric-lbl">DRIFT / WEEK</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">100%</span>
+                  <span class="metric-lbl">OFFLINE RTC FAILOVER</span>
+                </div>
               </div>
 
-              <div class="sys-action-row">
-                <button class="btn-case-study" data-case-study="esp32-clock">
-                  <span>VIEW CASE STUDY</span>
-                  <span class="arrow-glyph">&nearr;</span>
+              <div class="build-actions-row">
+                <button class="btn-action-primary" data-case-study="esp32-clock">
+                  <span>INSPECT CASE STUDY</span>
+                  <span class="action-glyph">&nearr;</span>
                 </button>
-                <a href="https://github.com/saptarshidas578/ESP32-Smart-Grandfather-Clock" target="_blank" rel="noopener noreferrer" class="btn-repo-link">
+                <a href="https://github.com/saptarshidas578/ESP32-Smart-Grandfather-Clock" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
+                  <span class="git-icon">&bull;</span>
                   <span>GITHUB REPO &nearr;</span>
                 </a>
               </div>
+
             </div>
           </div>
+
         </article>
 
-        <!-- System 03: Multimodal AI Interview Assistant -->
-        <article class="system-giant-card" id="sys-ai-interview">
-          <div class="system-card-topbar">
-            <span class="system-index">03 // SELECTED SYSTEM</span>
-            <span class="system-status-chip online">REAL-TIME INFERENCE</span>
+
+        <!-- ===================================================================
+             BUILD 03: MULTIMODAL AI INTERVIEW ASSISTANT
+             =================================================================== -->
+        <article class="build-dossier-card build-entry" data-category="ai" id="build-ai-interview">
+          
+          <div class="tech-identity-strip">
+            <div class="identity-item">
+              <span class="identity-lbl">IDENTIFIER</span>
+              <span class="identity-val">BUILD // 03</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">STATUS</span>
+              <span class="identity-val status-online"><span class="status-pulse-dot"></span>BENCHMARKED ON GROQ LPUs</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">DOMAIN</span>
+              <span class="identity-val">MULTIMODAL AI &bull; COMPUTER VISION &bull; LOW-LATENCY NLP</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">TIMELINE</span>
+              <span class="identity-val">2026</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">CORE STACK</span>
+              <span class="identity-val">OPENAI WHISPER &bull; MEDIAPIPE FACE MESH &bull; GROQ LLAMA-3 70B</span>
+            </div>
           </div>
 
-          <div class="system-card-hero">
-            <div class="system-canvas-wrapper interactive-canvas">
-              <img src="/assets/ai_interview_assistant.svg" alt="Multimodal AI Interview Assistant Topology" class="system-vector-visual" loading="lazy">
-              <div class="interactive-hover-banner">
-                <span class="hover-pulse-dot"></span>
-                <span>HOVER TO SIMULATE 468-PT FACIAL MESH &bull; GROQ STREAM</span>
+          <div class="build-dossier-grid reverse-layout">
+            <!-- Visual Left on Desktop (Reversed) -->
+            <div class="build-visual-frame interactive-schematic">
+              <img src="/assets/ai_interview_assistant.svg" alt="Multimodal AI Interview Assistant Pipeline Blueprint" class="schematic-vector-img" loading="lazy">
+              <div class="schematic-telemetry-hud">
+                <span class="hud-indicator"></span>
+                <span>468 3D FACIAL LANDMARKS &bull; WHISPER STREAMING &bull; GROQ LPU (285 T/S)</span>
               </div>
             </div>
 
-            <div class="system-content-panel">
-              <div class="sys-domain-tag">MULTIMODAL INTELLIGENCE &bull; COMPUTER VISION</div>
-              <h3 class="sys-title">AI INTERVIEW ASSISTANT</h3>
-              <h4 class="sys-subtitle">WHISPER ASR + MEDIAPIPE + GROQ LPU PIPELINE</h4>
+            <!-- Content Right -->
+            <div class="build-content-panel">
+              <div class="build-header-block">
+                <span class="build-kicker">EDGE COMPUTER VISION &bull; LOW-LATENCY MULTIMODAL PIPELINE</span>
+                <h3 class="build-name">MULTIMODAL AI INTERVIEW ASSISTANT</h3>
+                <p class="build-descriptor">
+                  An intelligent conversational coaching system. Integrates acoustic speech transcription via OpenAI Whisper with 468-point 3D facial landmark tracking (MediaPipe Face Mesh) to evaluate speech prosody, eye-contact percentage, and head pose. Pairs real-time multimodality with Groq LPU LLaMA-3 70B inference for sub-second adaptive technical feedback.
+                </p>
+              </div>
 
-              <p class="sys-description">
-                An intelligent conversational interview coaching platform. Integrates acoustic speech transcription via OpenAI Whisper with computer vision facial landmark tracking (MediaPipe Face Mesh) to assess speech pace, filler word frequency, eye contact percentage, and candidate poise. Feeds real-time transcripts to Groq LPU LLaMA 3 70B for instant adaptive questioning.
-              </p>
-
-              <div class="sys-metrics-ticker">
-                <div class="metric-item">
-                  <span class="m-val">285 t/s</span>
-                  <span class="m-lbl">GROQ LPU SPEED</span>
+              <!-- Signal Flow -->
+              <div class="signal-flow-box compact">
+                <div class="flow-header">
+                  <span class="flow-tag">// MULTIMODAL INGESTION &amp; INFERENCE PIPELINE</span>
                 </div>
-                <div class="metric-item">
-                  <span class="m-val">&lt; 120 ms</span>
-                  <span class="m-lbl">AUDIO LATENCY</span>
-                </div>
-                <div class="metric-item">
-                  <span class="m-val">468 Pts</span>
-                  <span class="m-lbl">3D FACIAL MESH</span>
+                <div class="flow-nodes">
+                  <div class="flow-node">
+                    <span class="n-type">INPUT</span>
+                    <span class="n-name">WEBCAM + MIC</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node">
+                    <span class="n-type">VISION MESH</span>
+                    <span class="n-name">MEDIAPIPE (468 PTS)</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node">
+                    <span class="n-type">AUDIO ASR</span>
+                    <span class="n-name">WHISPER STREAMING</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node active">
+                    <span class="n-type">LPU INFERENCE</span>
+                    <span class="n-name">GROQ LLAMA-3 70B</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="sys-stack-pills">
-                <span class="s-pill">OpenAI Whisper</span>
-                <span class="s-pill">MediaPipe Face Mesh</span>
-                <span class="s-pill">Groq LLaMA-3 70B</span>
-                <span class="s-pill">Python Flask</span>
-                <span class="s-pill">WebRTC</span>
+              <div class="build-metrics-row">
+                <div class="metric-cell">
+                  <span class="metric-num">285 t/s</span>
+                  <span class="metric-lbl">GROQ LPU SPEED</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">94.8%</span>
+                  <span class="metric-lbl">GAZE CONFIDENCE</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">&lt; 120 ms</span>
+                  <span class="metric-lbl">AUDIO LATENCY</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">60 FPS</span>
+                  <span class="metric-lbl">CPU MESH TRACKING</span>
+                </div>
               </div>
 
-              <div class="sys-action-row">
-                <button class="btn-case-study" data-case-study="ai-interview">
-                  <span>VIEW CASE STUDY</span>
-                  <span class="arrow-glyph">&nearr;</span>
+              <div class="build-actions-row">
+                <button class="btn-action-primary" data-case-study="ai-interview">
+                  <span>INSPECT CASE STUDY</span>
+                  <span class="action-glyph">&nearr;</span>
                 </button>
-                <a href="https://github.com/saptarshidas578/AI_Interview_Assistant" target="_blank" rel="noopener noreferrer" class="btn-repo-link">
+                <a href="https://github.com/saptarshidas578/AI_Interview_Assistant" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
+                  <span class="git-icon">&bull;</span>
                   <span>GITHUB REPO &nearr;</span>
                 </a>
               </div>
+
             </div>
           </div>
+
         </article>
 
-        <!-- System 04: Air Whiteboard Pro -->
-        <article class="system-giant-card" id="sys-air-whiteboard">
-          <div class="system-card-topbar">
-            <span class="system-index">04 // SELECTED SYSTEM</span>
-            <span class="system-status-chip online">60 FPS CPU ENGINE</span>
+
+        <!-- ===================================================================
+             BUILD 04: AIR WHITEBOARD PRO
+             =================================================================== -->
+        <article class="build-dossier-card build-entry" data-category="ai" id="build-air-whiteboard">
+          
+          <div class="tech-identity-strip">
+            <div class="identity-item">
+              <span class="identity-lbl">IDENTIFIER</span>
+              <span class="identity-val">BUILD // 04</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">STATUS</span>
+              <span class="identity-val status-online"><span class="status-pulse-dot"></span>PRODUCTION BENCHMARKED</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">DOMAIN</span>
+              <span class="identity-val">SPATIAL COMPUTING &bull; HAND TRACKING &bull; OCR</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">TIMELINE</span>
+              <span class="identity-val">2025 – 2026</span>
+            </div>
+            <div class="identity-item">
+              <span class="identity-lbl">CORE STACK</span>
+              <span class="identity-val">PYTHON OPENCV &bull; MEDIAPIPE HANDS &bull; KALMAN/EMA &bull; EASYOCR</span>
+            </div>
           </div>
 
-          <div class="system-card-hero">
-            <div class="system-canvas-wrapper interactive-canvas">
-              <img src="/assets/air_whiteboard_cv.svg" alt="Air Whiteboard Pro Gesture Tracking and OCR Engine" class="system-vector-visual" loading="lazy">
-              <div class="interactive-hover-banner">
-                <span class="hover-pulse-dot"></span>
-                <span>HOVER TO TRACE FINGERTIP LASER &bull; KALMAN COMPARISON</span>
+          <div class="build-dossier-grid">
+            <!-- Visual Left -->
+            <div class="build-visual-frame interactive-schematic">
+              <img src="/assets/air_whiteboard_cv.svg" alt="Air Whiteboard Pro Gesture Tracking and OCR Blueprint" class="schematic-vector-img" loading="lazy">
+              <div class="schematic-telemetry-hud">
+                <span class="hud-indicator"></span>
+                <span>21-NODE SKELETAL TOPOLOGY &bull; DUAL EMA FILTER (&lt;0.4px) &bull; EASYOCR TO LATEX</span>
               </div>
             </div>
 
-            <div class="system-content-panel">
-              <div class="sys-domain-tag">SPATIAL COMPUTING &bull; GESTURE RECOGNITION</div>
-              <h3 class="sys-title">AIR WHITEBOARD PRO</h3>
-              <h4 class="sys-subtitle">21-NODE SKELETAL TRACKING &amp; LATEX OCR ENGINE</h4>
+            <!-- Content Right -->
+            <div class="build-content-panel">
+              <div class="build-header-block">
+                <span class="build-kicker">SPATIAL GESTURE COMPUTING &bull; REAL-TIME MATHEMATICAL OCR</span>
+                <h3 class="build-name">AIR WHITEBOARD PRO</h3>
+                <p class="build-descriptor">
+                  A touchless spatial computing interface enabling users to write, sketch diagrams, and annotate math in mid-air using webcam input. Employs MediaPipe 21-node hand landmark topology with velocity-adaptive Exponential Moving Average (EMA) and Kalman filtering to eliminate camera noise, and integrates EasyOCR to parse drawn equations directly into LaTeX.
+                </p>
+              </div>
 
-              <p class="sys-description">
-                A touchless spatial computing interface enabling users to write, sketch diagrams, and annotate math in mid-air using webcam input. Employs MediaPipe 21-node hand landmark topology to track fingertip coordinates, applying Exponential Moving Average (EMA) and Kalman filtering to eliminate camera noise. Integrated EasyOCR automatically converts handwritten formulas into LaTeX and Markdown.
-              </p>
-
-              <div class="sys-metrics-ticker">
-                <div class="metric-item">
-                  <span class="m-val">&lt; 0.4 px</span>
-                  <span class="m-lbl">FILTERED JITTER</span>
+              <!-- Signal Flow -->
+              <div class="signal-flow-box compact">
+                <div class="flow-header">
+                  <span class="flow-tag">// SPATIAL GESTURE &amp; OCR PROCESSING PIPELINE</span>
                 </div>
-                <div class="metric-item">
-                  <span class="m-val">60 FPS</span>
-                  <span class="m-lbl">CPU REAL-TIME</span>
-                </div>
-                <div class="metric-item">
-                  <span class="m-val">99.2%</span>
-                  <span class="m-lbl">OCR CONFIDENCE</span>
+                <div class="flow-nodes">
+                  <div class="flow-node">
+                    <span class="n-type">INPUT</span>
+                    <span class="n-name">WEBCAM (60 FPS)</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node">
+                    <span class="n-type">TRACKING</span>
+                    <span class="n-name">21 HAND NODES</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node">
+                    <span class="n-type">DSP FILTER</span>
+                    <span class="n-name">DUAL EMA / KALMAN</span>
+                  </div>
+                  <span class="flow-arrow">&rarr;</span>
+                  <div class="flow-node active">
+                    <span class="n-type">OCR OUTPUT</span>
+                    <span class="n-name">EASYOCR TO LATEX</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="sys-stack-pills">
-                <span class="s-pill">Python OpenCV</span>
-                <span class="s-pill">MediaPipe Hands</span>
-                <span class="s-pill">Kalman / EMA Filter</span>
-                <span class="s-pill">EasyOCR</span>
-                <span class="s-pill">LaTeX Math</span>
+              <div class="build-metrics-row">
+                <div class="metric-cell">
+                  <span class="metric-num">&lt; 0.4 px</span>
+                  <span class="metric-lbl">FILTERED JITTER</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">60 FPS</span>
+                  <span class="metric-lbl">CPU REAL-TIME</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">99.2%</span>
+                  <span class="metric-lbl">MATH OCR ACCURACY</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-num">&lt; 8.2 ms</span>
+                  <span class="metric-lbl">STROKE LATENCY</span>
+                </div>
               </div>
 
-              <div class="sys-action-row">
-                <button class="btn-case-study" data-case-study="air-whiteboard">
-                  <span>VIEW CASE STUDY</span>
-                  <span class="arrow-glyph">&nearr;</span>
+              <div class="build-actions-row">
+                <button class="btn-action-primary" data-case-study="air-whiteboard">
+                  <span>INSPECT CASE STUDY</span>
+                  <span class="action-glyph">&nearr;</span>
                 </button>
-                <a href="https://github.com/saptarshidas578/Air-Whiteboard-Pro" target="_blank" rel="noopener noreferrer" class="btn-repo-link">
+                <a href="https://github.com/saptarshidas578/Air-Whiteboard-Pro" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
+                  <span class="git-icon">&bull;</span>
                   <span>GITHUB REPO &nearr;</span>
                 </a>
               </div>
+
             </div>
           </div>
+
         </article>
 
       </div>
+
+      <!-- TRANSITION TOWARD SECTION 04: ENGINEERING STACK -->
+      <div class="archive-to-stack-transition">
+        <div class="trans-label">// 03 &bull; BUILD ARCHIVE COMPLETE</div>
+        <div class="trans-headline">FROM DISCRETE BUILDS TO ARCHITECTURAL FOUNDATIONS</div>
+        <p class="trans-subtext">Explore the underlying protocols, toolchains, microcontrollers, and neural frameworks powering these systems.</p>
+        <a href="#stack" class="trans-anchor-link">
+          <span>INSPECT ENGINEERING STACK</span>
+          <span class="trans-arrow">&darr;</span>
+        </a>
+      </div>
+
     </section>
 
-    <!-- 05 — ENGINEERING STACK (Interactive Constellation / Circuit Network) -->
+    <!-- 04 — ENGINEERING STACK (Interactive Constellation / Circuit Network) -->
     <section class="section-container" id="stack">
       <div class="section-header">
-        <div class="section-tag">// 05 — ARCHITECTURAL DEPENDENCIES</div>
+        <div class="section-tag">// 04 — ARCHITECTURAL DEPENDENCIES</div>
         <h2 class="section-title">ENGINEERING STACK</h2>
         <p class="section-desc">
           Interactive constellation linking hardware electronics, bare-metal kernels, high-level algorithms, and edge intelligence. Hover any node to inspect protocols and real-world system applications.
@@ -449,217 +862,960 @@
       </div>
     </section>
 
-    <!-- 06 — BUILD LOG (Chronological Developer Journey) -->
-    <section class="section-container" id="build-log">
+    <!-- SECTION TRANSITION: FROM DEPENDENCIES TO DEVELOPMENT JOURNEY -->
+    <div class="archive-transition-bridge stack-to-log-bridge">
+      <div class="bridge-line"></div>
+      <div class="bridge-tag">
+        <span class="bridge-dot"></span>
+        <span>TOOLS BECAME EXPERIMENTS &bull; EXPERIMENTS BECAME SYSTEMS</span>
+      </div>
+      <div class="bridge-line"></div>
+    </div>
+
+    <!-- 05 — BUILD LOG (Chronological Engineering Development Journey) -->
+    <section class="section-container build-log-section" id="build-log">
       <div class="section-header">
-        <div class="section-tag">// 06 — CHRONOLOGICAL EVOLUTION</div>
+        <div class="section-tag">// 05 — SYSTEM EVOLUTION</div>
         <h2 class="section-title">BUILD LOG</h2>
         <p class="section-desc">
-          Engineering growth captured as milestone logs from foundational circuits and algorithms to autonomous power electronics and multimodal vision systems.
+          The progression from first-principles physics and circuit theory to bare-metal embedded kernels, intensive summer prototyping sprints, and real-time intelligent systems.
         </p>
       </div>
 
-      <div class="build-log-tree">
+      <!-- Technical PCB Substrate Banner & Layer Specifications -->
+      <div class="pcb-substrate-banner">
+        <div class="pcb-silk-row">
+          <span class="silk-item"><span class="silk-dot"></span>LAYER: TOP_SIG_L1</span>
+          <span class="silk-item">SUBSTRATE: FR-4 TG170 (1.6mm)</span>
+          <span class="silk-item">COPPER: 2.0 OZ (70µm)</span>
+          <span class="silk-item">FINISH: ENIG GOLD 99.9%</span>
+          <span class="silk-item">IMPEDANCE: 50Ω DIFF</span>
+          <span class="silk-item"><span class="silk-status">IPC-6012 CLASS 3</span></span>
+        </div>
+      </div>
 
-        <!-- 2024 Entry -->
-        <div class="log-node">
-          <div class="log-timestamp">2024</div>
-          <div class="log-connector"><div class="log-dot"></div></div>
-          <div class="log-body">
-            <h3 class="log-milestone">Started Electrical &amp; Computer Science Engineering</h3>
-            <p class="log-summary">
-              Established core theoretical foundation in circuit analysis, Kirchoff's laws, Maxwell's equations, digital logic, and basic microcontroller architectures.
-            </p>
-            <ul class="log-subitems">
-              <li><strong>Circuit Theory &amp; Signals:</strong> Transient analysis, active op-amp filters, Fourier and Laplace transforms.</li>
-              <li><strong>C++ &amp; Data Structures:</strong> Algorithmic foundations, pointers, dynamic memory allocation, and STL containers.</li>
-              <li><strong>Digital Logic:</strong> Boolean algebra, logic gates, flip-flops, multiplexers, and state machine design.</li>
-            </ul>
+      <!-- Alternating Central PCB Signal Trace Timeline -->
+      <div class="timeline-stream">
+        <!-- 4 Corner Optical Alignment Fiducials -->
+        <div class="pcb-fiducial fid-tl" title="Optical Alignment Fiducial FID_1"><span class="fid-cross"></span><span class="fid-pad"></span><span class="fid-label">FID1</span></div>
+        <div class="pcb-fiducial fid-tr" title="Optical Alignment Fiducial FID_2"><span class="fid-cross"></span><span class="fid-pad"></span><span class="fid-label">FID2</span></div>
+        <div class="pcb-fiducial fid-bl" title="Optical Alignment Fiducial FID_3"><span class="fid-cross"></span><span class="fid-pad"></span><span class="fid-label">FID3</span></div>
+        <div class="pcb-fiducial fid-br" title="Optical Alignment Fiducial FID_4"><span class="fid-cross"></span><span class="fid-pad"></span><span class="fid-label">FID4</span></div>
+
+        <!-- Center Coplanar Waveguide PCB Trace Assembly with Guard Tracks & Spine Vias -->
+        <div class="timeline-center-trace">
+          <div class="trace-guard trace-guard-l"></div>
+          <div class="trace-main-line">
+            <div class="timeline-active-pulse"></div>
+          </div>
+          <div class="trace-guard trace-guard-r"></div>
+          <!-- Spine Stitching Micro-Vias -->
+          <div class="spine-via spine-via-1" title="GND Shield Stitching Via 01"></div>
+          <div class="spine-via spine-via-2" title="GND Shield Stitching Via 02"></div>
+          <div class="spine-via spine-via-3" title="GND Shield Stitching Via 03"></div>
+          <div class="spine-via spine-via-4" title="GND Shield Stitching Via 04"></div>
+          <div class="spine-via spine-via-5" title="GND Shield Stitching Via 05"></div>
+        </div>
+
+        <!-- Milestone 01: Inception & First Principles (VIT Vellore 2025–Early 2026) -->
+        <div class="timeline-node timeline-row row-left active-node" data-milestone="foundations">
+          <!-- Primary Card Side (Left) -->
+          <div class="timeline-side side-primary">
+            <div class="timeline-trace-arm arm-primary">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Test Point TP1"><span class="pad-gold"></span><span class="pad-txt">TP1</span></span>
+            </div>
+            <article class="milestone-card">
+              <!-- PCB Corner Silkscreen Crosshair Markers -->
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <!-- Edge ENIG Gold Contact Fingers (Interface to Trace Arm) -->
+              <div class="pcb-enig-fingers">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+
+              <div class="milestone-topbar">
+                <span class="milestone-period">2025 — EARLY 2026</span>
+                <div class="milestone-badge-group">
+                  <span class="milestone-badge">ACADEMIC INCEPTION &bull; YEAR 1</span>
+                  <span class="pcb-refdes-tag">U1 // CORE_PHYS</span>
+                </div>
+              </div>
+              <h3 class="milestone-title">FIRST-PRINCIPLES FOUNDATIONS</h3>
+              <h4 class="milestone-subtitle">Electrical &amp; Computer Science Engineering &bull; VIT Vellore</h4>
+              <p class="milestone-body">
+                Began undergraduate studies at Vellore Institute of Technology (Class of 2029). Focused on deconstructing physics, circuit mathematics, and silicon mechanics from the ground up rather than treating microprocessors as black-box abstractions.
+              </p>
+              <div class="milestone-course-matrix">
+                <span class="matrix-label">KEY COURSEWORK &amp; THEORY:</span>
+                <div class="course-chips">
+                  <span class="c-chip">Circuit Theory</span>
+                  <span class="c-chip">Multivariable Calculus</span>
+                  <span class="c-chip">Quantum Mechanics</span>
+                  <span class="c-chip">Digital Logic &amp; Design</span>
+                  <span class="c-chip">Computer Architecture</span>
+                  <span class="c-chip">Analog Electronics</span>
+                  <span class="c-chip">Linear Algebra</span>
+                  <span class="c-chip">Python &amp; Java OOP</span>
+                </div>
+              </div>
+              <div class="milestone-footer-tags">
+                <span class="m-tag">VIT VELLORE</span>
+                <span class="m-tag">MAXWELL'S LAWS</span>
+                <span class="m-tag">ANALOG CIRCUITS</span>
+                <span class="m-tag">LOGIC DESIGN</span>
+              </div>
+              <!-- PCB Card Test-Point Strip -->
+              <div class="pcb-card-testpoints">
+                <div class="tp-group">
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_VCC</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_LOGIC</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_GND</span>
+                </div>
+                <span class="tp-meta">DIFF: 50Ω &bull; SUBSTRATE: FR-4 &bull; ENIG 99.9%</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Center Via Junction -->
+          <div class="timeline-via" title="Via: Academic Inception [NET: CORE_PHYS_01]">
+            <span class="via-thermal-spokes"></span>
+            <span class="via-ring"></span>
+            <span class="via-core"></span>
+            <span class="via-net-label">NET: CORE_PHYS</span>
+          </div>
+
+          <!-- Companion PCB Artifact Side (Right) -->
+          <div class="timeline-side side-companion">
+            <div class="timeline-trace-arm arm-companion">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Bus Tap TP1B"><span class="pad-gold"></span><span class="pad-txt">TP1B</span></span>
+            </div>
+            <div class="pcb-artifact-card">
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <div class="pcb-enig-fingers fingers-companion">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+              <div class="artifact-topbar">
+                <span class="artifact-label">// EXHIBIT: SCHEMATIC CAD</span>
+                <span class="artifact-badge">TOP_SILK &bull; BGA BREAKOUT</span>
+              </div>
+              <div class="artifact-viewport">
+                <img src="/assets/pcb/pcb_schematic_foundations.png" alt="PCB Schematic Foundations Layout" class="artifact-img" loading="lazy" />
+                <div class="artifact-grid-overlay"></div>
+              </div>
+              <div class="artifact-hud-bar">
+                <span class="hud-item"><span class="hud-dot"></span>NETS: 142 ROUTED</span>
+                <span class="hud-item">VIA_DENSITY: 88</span>
+                <span class="hud-item hud-dim">FR-4 SUBSTRATE</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- 2025 Entry -->
-        <div class="log-node">
-          <div class="log-timestamp">2025</div>
-          <div class="log-connector"><div class="log-dot"></div></div>
-          <div class="log-body">
-            <h3 class="log-milestone">Embedded Systems, RTOS &amp; Algorithmic Mastery</h3>
-            <p class="log-summary">
-              Transitioned from theory to bare-metal embedded development and competitive programming. Began automated synchronization of LeetCode DSA solutions.
-            </p>
-            <ul class="log-subitems">
-              <li><strong>Microcontroller Firmware:</strong> Mastering ESP32/ESP8266 peripherals, GPIO interrupts, I2C/SPI sensor buses, hardware timers.</li>
-              <li><strong>FreeRTOS Kernel:</strong> Multi-threaded task scheduling, mutexes, binary semaphores, and inter-task message queues.</li>
-              <li><strong>LeetCode Competitive DSA:</strong> Solving 100+ problems across Graphs, Dynamic Programming, and Binary Search Trees. Automated sync to GitHub.</li>
-              <li><strong>Computer Vision:</strong> Real-time image processing pipelines using Python, OpenCV, and coordinate filtering.</li>
-            </ul>
+        <!-- Milestone 02: Summer Sprint Part I (May–June 2026: Silicon & Kernels) -->
+        <div class="timeline-node timeline-row row-right" data-milestone="summer-kernels">
+          <!-- Companion PCB Artifact Side (Left) -->
+          <div class="timeline-side side-companion">
+            <div class="timeline-trace-arm arm-companion">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Bus Tap TP2B"><span class="pad-gold"></span><span class="pad-txt">TP2B</span></span>
+            </div>
+            <div class="pcb-artifact-card">
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <div class="pcb-enig-fingers fingers-companion">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+              <div class="artifact-topbar">
+                <span class="artifact-label">// EXHIBIT: MULTI-LAYER EDA</span>
+                <span class="artifact-badge highlight-cyan">GPS02-UBX &bull; HV STAGE</span>
+              </div>
+              <div class="artifact-viewport">
+                <img src="/assets/pcb/pcb_cad_kernels.png" alt="Multi-Layer EDA PCB Layout" class="artifact-img" loading="lazy" />
+                <div class="artifact-grid-overlay"></div>
+              </div>
+              <div class="artifact-hud-bar">
+                <span class="hud-item"><span class="hud-dot dot-cyan"></span>2.5kV OPTO-ISOLATION</span>
+                <span class="hud-item">CT: 1000:1</span>
+                <span class="hud-item hud-dim">32-BIT I2S DMA</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Via Junction -->
+          <div class="timeline-via" title="Via: Silicon & Real-Time Kernels [NET: CT_PWR_02]">
+            <span class="via-thermal-spokes"></span>
+            <span class="via-ring"></span>
+            <span class="via-core"></span>
+            <span class="via-net-label">NET: CT_PWR</span>
+          </div>
+
+          <!-- Primary Card Side (Right) -->
+          <div class="timeline-side side-primary">
+            <div class="timeline-trace-arm arm-primary">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Test Point TP2"><span class="pad-gold"></span><span class="pad-txt">TP2</span></span>
+            </div>
+            <article class="milestone-card">
+              <!-- PCB Corner Silkscreen Crosshair Markers -->
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <!-- Edge ENIG Gold Contact Fingers -->
+              <div class="pcb-enig-fingers">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+
+              <div class="milestone-topbar">
+                <span class="milestone-period">MAY — JUNE 2026</span>
+                <div class="milestone-badge-group">
+                  <span class="milestone-badge highlight-cyan">INTENSIVE SUMMER SPRINT &bull; PART I</span>
+                  <span class="pcb-refdes-tag tag-cyan">Q1 // PWR_STAGE</span>
+                </div>
+              </div>
+              <h3 class="milestone-title">SILICON &amp; REAL-TIME KERNELS</h3>
+              <h4 class="milestone-subtitle">230V AC True-RMS Sensing &bull; FreeRTOS Dual-Core Audio DMA</h4>
+              <p class="milestone-body">
+                Transitioned from textbook schematic derivations into high-voltage bench experimentation and bare-metal firmware. Hand-wound a 1000:1 toroidal ferrite current transformer coil to measure continuous 16A loads with 2.5 kV galvanic isolation, deriving custom 68.2&Omega; burden resistors and active 1.65V DC-bias op-amp front-ends with sub-cycle (&lt;18.5 ms) opto-isolated solid-state relay protection.
+              </p>
+              <p class="milestone-body">
+                Concurrently mastered deterministic FreeRTOS task scheduling on dual-core Xtensa microcontrollers. Solved Wi-Fi preemption audio underruns by pinning I2S DMA Westminster chime synthesis strictly to Core 1 feeding an external 32-bit PCM5100A DAC with 0.00 ms jitter.
+              </p>
+              <div class="milestone-footer-tags">
+                <span class="m-tag highlight-cyan">TOROIDAL CT COIL</span>
+                <span class="m-tag">SIMPSON'S TRUE-RMS</span>
+                <span class="m-tag highlight-cyan">FREERTOS CORE PINNING</span>
+                <span class="m-tag">32-BIT I2S DAC</span>
+              </div>
+              <!-- PCB Card Test-Point Strip -->
+              <div class="pcb-card-testpoints">
+                <div class="tp-group">
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_230V</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_I2S_CLK</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_OPTO_ISO</span>
+                </div>
+                <span class="tp-meta">ISOLATION: 2.5 kV &bull; JITTER: 0.00ms</span>
+              </div>
+            </article>
           </div>
         </div>
 
-        <!-- 2026 Entry (Current) -->
-        <div class="log-node active">
-          <div class="log-timestamp current">2026</div>
-          <div class="log-connector"><div class="log-dot current-pulse"></div></div>
-          <div class="log-body active">
-            <div class="log-active-tag">CURRENT STAGE // ACTIVE PRODUCTION</div>
-            <h3 class="log-milestone">Autonomous Power Electronics, Horology &amp; Multimodal AI</h3>
-            <p class="log-summary">
-              Synthesizing physical hardware with high-performance software across 4 completed flagship engineering architectures.
-            </p>
-            <ul class="log-subitems">
-              <li><strong>Smart AC Sensing:</strong> Designed custom toroidal current transformer coil with discrete 230V AC True-RMS analog front-end.</li>
-              <li><strong>Electro-Acoustic Horology:</strong> Built dual-core ESP32 Grandfather Clock with 32-bit I2S PCM5100A DAC harmonic bell synthesis.</li>
-              <li><strong>Multimodal Interview AI:</strong> Coupled OpenAI Whisper speech transcription with 468-point 3D facial mesh and Groq LPU LLaMA-3 inference.</li>
-              <li><strong>Air Whiteboard Pro:</strong> Engineered 60 FPS contactless 21-node skeletal hand tracking with Kalman jitter filtering and EasyOCR.</li>
-            </ul>
+        <!-- Milestone 03: Summer Sprint Part II (June–July 2026: Edge AI & Vision) -->
+        <div class="timeline-node timeline-row row-left" data-milestone="summer-ai">
+          <!-- Primary Card Side (Left) -->
+          <div class="timeline-side side-primary">
+            <div class="timeline-trace-arm arm-primary">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Test Point TP3"><span class="pad-gold"></span><span class="pad-txt">TP3</span></span>
+            </div>
+            <article class="milestone-card">
+              <!-- PCB Corner Silkscreen Crosshair Markers -->
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <!-- Edge ENIG Gold Contact Fingers -->
+              <div class="pcb-enig-fingers">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+
+              <div class="milestone-topbar">
+                <span class="milestone-period">JUNE — JULY 2026</span>
+                <div class="milestone-badge-group">
+                  <span class="milestone-badge highlight-gold">INTENSIVE SUMMER SPRINT &bull; PART II</span>
+                  <span class="pcb-refdes-tag tag-gold">U2 // VISION_NPU</span>
+                </div>
+              </div>
+              <h3 class="milestone-title">EDGE AI &amp; SPATIAL COMPUTING</h3>
+              <h4 class="milestone-subtitle">Low-Latency Multimodal Telemetry &bull; Kalman Gesture Pipelines</h4>
+              <p class="milestone-body">
+                Expanded from bare-metal C++ into real-time computer vision and edge intelligence. Engineered the Multimodal AI Interview Assistant, coupling streaming OpenAI Whisper speech chunks and local 468-point 3D facial mesh gaze calculations (60 FPS on CPU) with Groq LPU LLaMA-3 70B inference operating at 285 tokens/sec.
+              </p>
+              <p class="milestone-body">
+                To solve high-frequency webcam hand tremor (&plusmn;5 px jitter) in contactless spatial writing, developed Air Whiteboard Pro with a dual Exponential Moving Average (EMA) and velocity-adaptive Kalman filter, suppressing noise below 0.4 px while integrating EasyOCR for automatic mid-air math-to-LaTeX transcription.
+              </p>
+              <div class="milestone-footer-tags">
+                <span class="m-tag highlight-gold">OPENAI WHISPER</span>
+                <span class="m-tag">MEDIAPIPE 468-PT MESH</span>
+                <span class="m-tag highlight-gold">GROQ LPUs (285 T/S)</span>
+                <span class="m-tag">KALMAN FILTER</span>
+                <span class="m-tag">EASYOCR LATEX</span>
+              </div>
+              <!-- PCB Card Test-Point Strip -->
+              <div class="pcb-card-testpoints">
+                <div class="tp-group">
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_AUDIO_IN</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_60FPS_SYNC</span>
+                  <span class="tp-pad"><span class="tp-gold-dot"></span>TP_GROQ_LPU</span>
+                </div>
+                <span class="tp-meta">LATENCY: 285 T/S &bull; NOISE: &lt;0.4px</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Center Via Junction -->
+          <div class="timeline-via" title="Via: Edge AI & Spatial Vision [NET: NPU_DSP_03]">
+            <span class="via-thermal-spokes"></span>
+            <span class="via-ring"></span>
+            <span class="via-core"></span>
+            <span class="via-net-label">NET: NPU_DSP</span>
+          </div>
+
+          <!-- Companion PCB Artifact Side (Right) -->
+          <div class="timeline-side side-companion">
+            <div class="timeline-trace-arm arm-companion">
+              <span class="arm-track-primary"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad" title="Bus Tap TP3B"><span class="pad-gold"></span><span class="pad-txt">TP3B</span></span>
+            </div>
+            <div class="pcb-artifact-card">
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <div class="pcb-enig-fingers fingers-companion">
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+                <span class="enig-bar"></span>
+              </div>
+              <div class="artifact-topbar">
+                <span class="artifact-label">// EXHIBIT: NEURAL SILICON ART</span>
+                <span class="artifact-badge highlight-gold">ENIG 99.9% &bull; HUMAN-AI</span>
+              </div>
+              <div class="artifact-viewport">
+                <img src="/assets/pcb/pcb_neural_silicon.png" alt="Neural Silicon Convergence PCB Art" class="artifact-img" loading="lazy" />
+                <div class="artifact-grid-overlay"></div>
+              </div>
+              <div class="artifact-hud-bar">
+                <span class="hud-item"><span class="hud-dot dot-gold"></span>468-PT MESH GAZE</span>
+                <span class="hud-item">GROQ LPU: 285 T/S</span>
+                <span class="hud-item hud-dim">KALMAN &lt;0.4px</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- 2027+ Entry -->
-        <div class="log-node future">
-          <div class="log-timestamp">2027+</div>
-          <div class="log-connector"><div class="log-dot future-dot"></div></div>
-          <div class="log-body future">
-            <h3 class="log-milestone">Hardware Acceleration &amp; Distributed Edge Intelligence</h3>
-            <p class="log-summary">
-              Expanding into FPGA hardware acceleration, custom silicon RTL design (Verilog/VHDL), and distributed low-power edge neural network architectures.
-            </p>
+        <!-- Milestone 04: Current State (Late 2026 – Present) -->
+        <div class="timeline-node timeline-row row-right node-current active-node" data-milestone="current">
+          <!-- Companion PCB Artifact Side (Left) -->
+          <div class="timeline-side side-companion">
+            <div class="timeline-trace-arm arm-companion">
+              <span class="arm-track-primary track-green"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad pad-green" title="Bus Tap TP4B"><span class="pad-gold pad-green-dot"></span><span class="pad-txt">TP4B</span></span>
+            </div>
+            <div class="pcb-artifact-card">
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <div class="pcb-enig-fingers fingers-companion">
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+              </div>
+              <div class="artifact-topbar">
+                <span class="artifact-label">// EXHIBIT: ALGORITHMIC MATRIX</span>
+                <span class="artifact-badge badge-current"><span class="status-pulse-dot"></span>DENSE ROUTING</span>
+              </div>
+              <div class="artifact-viewport">
+                <img src="/assets/pcb/pcb_dense_routing.png" alt="High-Density Algorithmic Circuit Routing" class="artifact-img" loading="lazy" />
+                <div class="artifact-grid-overlay"></div>
+              </div>
+              <div class="artifact-hud-bar">
+                <span class="hud-item"><span class="hud-dot dot-green"></span>100+ LEETCODE DSA</span>
+                <span class="hud-item">CLOSED-LOOP CTRL</span>
+                <span class="hud-item hud-dim">CORE 0+1 ACTIVE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Via Junction -->
+          <div class="timeline-via current-via" title="Via: Active State [NET: RTOS_ACT_04]">
+            <span class="via-thermal-spokes current-spokes"></span>
+            <span class="via-ring current-ring"></span>
+            <span class="via-core current-core"></span>
+            <span class="via-net-label label-green">NET: RTOS_ACT</span>
+          </div>
+
+          <!-- Primary Card Side (Right) -->
+          <div class="timeline-side side-primary">
+            <div class="timeline-trace-arm arm-primary">
+              <span class="arm-track-primary track-green"></span>
+              <span class="arm-track-guard"></span>
+              <span class="arm-test-pad pad-green" title="Test Point TP4"><span class="pad-gold pad-green-dot"></span><span class="pad-txt">TP4</span></span>
+            </div>
+            <article class="milestone-card current-state-card">
+              <!-- PCB Corner Silkscreen Crosshair Markers -->
+              <span class="pcb-corner-silk corner-tl">⌜</span>
+              <span class="pcb-corner-silk corner-tr">⌝</span>
+              <span class="pcb-corner-silk corner-bl">⌞</span>
+              <span class="pcb-corner-silk corner-br">⌟</span>
+              <!-- Edge ENIG Gold Contact Fingers -->
+              <div class="pcb-enig-fingers">
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+                <span class="enig-bar enig-green"></span>
+              </div>
+
+              <div class="milestone-topbar">
+                <span class="milestone-period highlight-green">CURRENT STATE &bull; 2026+</span>
+                <div class="milestone-badge-group">
+                  <span class="milestone-badge badge-current"><span class="status-pulse-dot"></span>ACTIVE PRODUCTION &bull; YEAR 2</span>
+                  <span class="pcb-refdes-tag tag-green">MCU // XTENSA_RTOS</span>
+                </div>
+              </div>
+              <h3 class="milestone-title">CONTROL SYSTEMS &amp; ALGORITHMIC RIGOR</h3>
+              <h4 class="milestone-subtitle">2nd Year Undergrad at VIT Vellore &bull; Hardware-AI Interfacing</h4>
+              <p class="milestone-body">
+                Currently advancing through 2nd-year engineering coursework at VIT Vellore in Control Systems, Electrical Machines, and Artificial Intelligence. Maintaining daily algorithmic mental fitness on LeetCode with 100+ problems solved across Graphs, Dynamic Programming, and Binary Search Trees, continuously synchronized to GitHub via automated LeetPush.
+              </p>
+              <div class="current-exploration-strip">
+                <span class="strip-label">ACTIVE TECHNICAL FOCUS:</span>
+                <p class="strip-text">
+                  Bridging custom analog front-ends and electrical machine telemetry with closed-loop control algorithms and low-latency edge AI models.
+                </p>
+              </div>
+              <div class="milestone-footer-tags">
+                <span class="m-tag highlight-green">CONTROL SYSTEMS</span>
+                <span class="m-tag">ELECTRICAL MACHINES</span>
+                <span class="m-tag highlight-green">100+ LEETCODE DSA</span>
+                <span class="m-tag">EDGE HARDWARE AI</span>
+              </div>
+              <!-- PCB Card Test-Point Strip -->
+              <div class="pcb-card-testpoints">
+                <div class="tp-group">
+                  <span class="tp-pad"><span class="tp-gold-dot tp-green-dot"></span>TP_CTRL_LOOP</span>
+                  <span class="tp-pad"><span class="tp-gold-dot tp-green-dot"></span>TP_DSA_PULL</span>
+                  <span class="tp-pad"><span class="tp-gold-dot tp-green-dot"></span>TP_LIVE_UPLINK</span>
+                </div>
+                <span class="tp-meta">STATUS: CONTINUOUS EXECUTION &bull; CORE 0+1</span>
+              </div>
+            </article>
           </div>
         </div>
 
       </div>
+
+      <!-- TRANSITION TOWARD SECTION 06: SYSTEM SIGNALS -->
+      <div class="archive-to-stack-transition log-to-achieve-transition">
+        <div class="pcb-signal-coupler">
+          <div class="coupler-line"></div>
+          <div class="coupler-node">
+            <span class="coupler-ring"></span>
+            <span class="coupler-dot"></span>
+          </div>
+          <div class="coupler-pulse"></div>
+        </div>
+        <div class="trans-label">// 05 &bull; BUILD LOG PERSISTED ──&gt; DETECTING SYSTEM SIGNALS</div>
+        <div class="trans-headline">VERIFIED OBSERVABLE EVIDENCE</div>
+        <p class="trans-subtext">Independent repository code, continuous problem-solving pipelines, and accredited certifications backing the systems.</p>
+        <a href="#achievements" class="trans-anchor-link">
+          <span>INSPECT SIGNALS &amp; ACHIEVEMENTS</span>
+          <span class="trans-arrow">&darr;</span>
+        </a>
+      </div>
+
     </section>
 
-    <!-- 07 — ACHIEVEMENTS (Restrained & High-Signal) -->
-    <section class="section-container" id="achievements">
+    <!-- 06 — SIGNALS & ACHIEVEMENTS (Restrained Technical Verification Layer) -->
+    <section class="section-container signals-section" id="achievements">
+      <div id="signals" class="section-anchor-shim"></div>
+      
+      <!-- Section Header -->
       <div class="section-header">
-        <div class="section-tag">// 07 — CREDENTIALS &bull; VERIFIED</div>
-        <h2 class="section-title">ACHIEVEMENTS</h2>
+        <div class="section-tag">// 06 — SYSTEM SIGNALS &bull; VERIFIED EVIDENCE</div>
+        <h2 class="section-title">SIGNALS &amp; ACHIEVEMENTS</h2>
         <p class="section-desc">
-          Restrained engineering milestones, competitive programming credentials, and technical project exhibitions.
+          Restrained, verifiable evidence backing the engineering narrative. Code repositories, competitive algorithmic milestones, accredited coursework, and academic foundations.
         </p>
       </div>
 
-      <div class="achievements-grid">
+      <!-- Telemetry Substrate Topbar -->
+      <div class="signals-telemetry-bar">
+        <div class="telemetry-cell">
+          <span class="telemetry-dot dot-cyan"></span>
+          <span class="telemetry-label">SYSTEM_STATUS:</span>
+          <span class="telemetry-val">STEADY_STATE_EMITTING</span>
+        </div>
+        <div class="telemetry-cell">
+          <span class="telemetry-dot dot-green"></span>
+          <span class="telemetry-label">SIGNAL_INTEGRITY:</span>
+          <span class="telemetry-val">100% VERIFIED</span>
+        </div>
+        <div class="telemetry-cell">
+          <span class="telemetry-label">PROTOCOL:</span>
+          <span class="telemetry-val">PUBLIC_REPOSITORIES &bull; LEETPUSH &bull; VIT</span>
+        </div>
+      </div>
+
+      <!-- Part 1: External Signal Vectors -->
+      <div class="signals-vector-grid">
         
-        <div class="achievement-card" data-modal="hackathon">
-          <div class="achieve-tag">HACKATHON</div>
-          <h4 class="achieve-title">Smart Hardware Prototyping</h4>
-          <p class="achieve-desc">Designed and deployed IoT telemetry hardware under 36-hour sprint constraints.</p>
-          <span class="achieve-link">INSPECT EVIDENCE &rarr;</span>
-        </div>
-
-        <div class="achievement-card" data-modal="competition">
-          <div class="achieve-tag">COMPETITIVE DSA</div>
-          <h4 class="achieve-title">LeetCode 100+ Solved &bull; LeetPush Sync</h4>
-          <p class="achieve-desc">Continuous automated problem-solving repository across Graphs, DP, and Trees.</p>
-          <span class="achieve-link">INSPECT EVIDENCE &rarr;</span>
-        </div>
-
-        <div class="achievement-card" data-modal="certification">
-          <div class="achieve-tag">CERTIFICATION</div>
-          <h4 class="achieve-title">Embedded Systems &amp; RTOS Firmware</h4>
-          <p class="achieve-desc">Verified competencies in microcontrollers, DMA buffers, and FreeRTOS task scheduling.</p>
-          <span class="achieve-link">INSPECT EVIDENCE &rarr;</span>
-        </div>
-
-        <div class="achievement-card" data-modal="expo">
-          <div class="achieve-tag">PROJECT EXPO</div>
-          <h4 class="achieve-title">Electro-Acoustic Horology Showcase</h4>
-          <p class="achieve-desc">Live physical demonstration of ESP32 I2S harmonic bell synthesis and custom CT circuits.</p>
-          <span class="achieve-link">INSPECT EVIDENCE &rarr;</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 08 — CONTACT & QUANTUM FUSION CORE (High-Energy Tokamak Reactor Finale) -->
-    <section class="contact-cosmic-section" id="contact">
-      <!-- 3D Interactive Tokamak Magnetic Confinement & Plasma Fusion Canvas -->
-      <canvas id="contact-reactor-canvas" class="contact-reactor-canvas"></canvas>
-
-      <div class="contact-cosmic-container">
-        <!-- Live Quantum Uplink Status Beacon -->
-        <div class="reactor-status-badge">
-          <span class="reactor-beacon"></span>
-          <span>TOKAMAK FUSION CORE // QUANTUM TRANSMISSION UPLINK</span>
-        </div>
-
-        <div class="reactor-title-group">
-          <h2 class="reactor-headline">LET'S ENGINEER</h2>
-          <h2 class="reactor-headline plasma-text">SOMETHING EXTRAORDINARY.</h2>
-          <h3 class="reactor-subheadline">AT THE CONVERGENCE OF SILICON, HARDWARE &amp; INTELLIGENCE.</h3>
-        </div>
-
-        <p class="reactor-scope-desc">
-          Available for bare-metal embedded architectures, custom analog sensing circuits, competitive algorithms, and multimodal edge AI research.
-        </p>
-
-        <!-- Excitation Transmission Button Cluster -->
-        <div class="reactor-action-cluster">
-          <a href="mailto:saptarshi2007@gmail.com" class="btn-primary btn-reactor-transmit" id="btn-contact-transmit">
-            <span class="btn-plasma-icon">⚡</span>
-            <span>INITIATE TRANSMISSION</span>
-            <span class="btn-arrow">&rarr;</span>
-          </a>
-          <div class="reactor-encryption-tag">
-            <span class="enc-dot">●</span>
-            <span>DIRECT 256-BIT ENCRYPTED CHANNEL // LATENCY &lt; 15ms</span>
-          </div>
-        </div>
-
-        <!-- 4 Cybernetic Uplink Cards with Live Badges -->
-        <div class="reactor-uplinks-matrix">
+        <!-- Vector 01: GitHub -->
+        <div class="vector-card" data-vector="github">
+          <span class="vector-card-corner corner-tl">⌜</span>
+          <span class="vector-card-corner corner-tr">⌝</span>
+          <span class="vector-card-corner corner-bl">⌞</span>
+          <span class="vector-card-corner corner-br">⌟</span>
           
-          <a href="https://github.com/saptarshidas578" target="_blank" rel="noopener noreferrer" class="cosmic-link-card" id="uplink-github">
-            <div class="uplink-card-head">
-              <span class="c-platform">GITHUB ARCHIVE</span>
-              <span class="uplink-ext">&nearr;</span>
+          <div class="vector-head">
+            <div class="vector-tag-group">
+              <span class="vector-idx">// VECTOR 01</span>
+              <span class="vector-type">SOURCE REPOSITORIES</span>
             </div>
-            <div class="c-handle">saptarshidas578</div>
-            <div class="uplink-subtext">Verified Repositories &bull; Firmware Sources</div>
-          </a>
+            <span class="vector-status-pill status-verified"><span class="pill-dot"></span>VERIFIED</span>
+          </div>
 
-          <a href="https://www.linkedin.com/in/saptarshi-das-3255673a1/" target="_blank" rel="noopener noreferrer" class="cosmic-link-card" id="uplink-linkedin">
-            <div class="uplink-card-head">
-              <span class="c-platform">LINKEDIN NETWORK</span>
-              <span class="uplink-ext">&nearr;</span>
+          <div class="vector-main">
+            <div class="vector-platform">
+              <svg class="vector-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span class="vector-handle">saptarshidas578</span>
             </div>
-            <div class="c-handle">saptarshi-das</div>
-            <div class="uplink-subtext">Professional Network &bull; Engineering Timeline</div>
-          </a>
+            <div class="vector-metric-strip">
+              <div class="v-metric">
+                <span class="v-num">13</span>
+                <span class="v-lbl">PUBLIC REPOSITORIES</span>
+              </div>
+              <div class="v-metric">
+                <span class="v-tech">C &bull; C++ &bull; PYTHON</span>
+                <span class="v-lbl">PRIMARY LANGUAGES</span>
+              </div>
+            </div>
+            <p class="vector-desc">
+              Open-source embedded systems firmware, FreeRTOS audio pipelines, high-voltage sensor conditioning circuits, and machine learning models.
+            </p>
+          </div>
 
-          <a href="https://leetcode.com/u/Saptarshi2007/" target="_blank" rel="noopener noreferrer" class="cosmic-link-card" id="uplink-leetcode">
-            <div class="uplink-card-head">
-              <span class="c-platform">LEETCODE VERIFIED</span>
-              <span class="uplink-ext">&nearr;</span>
-            </div>
-            <div class="c-handle">Saptarshi2007</div>
-            <div class="uplink-subtext">100+ DSA Solved &bull; LeetPush Synced</div>
-          </a>
+          <div class="vector-footer">
+            <a href="https://github.com/saptarshidas578" target="_blank" rel="noopener noreferrer" class="vector-action-btn">
+              <span>OPEN REPOSITORIES</span>
+              <span class="btn-arrow">&nearr;</span>
+            </a>
+          </div>
+        </div>
 
-          <div class="cosmic-link-card email-card" id="contact-email-card" style="cursor: pointer;">
-            <div class="uplink-card-head">
-              <span class="c-platform">DIRECT TERMINAL EMAIL</span>
-              <span class="uplink-ext" id="email-copy-glyph">📋</span>
+        <!-- Vector 02: LeetCode -->
+        <div class="vector-card" data-vector="leetcode">
+          <span class="vector-card-corner corner-tl">⌜</span>
+          <span class="vector-card-corner corner-tr">⌝</span>
+          <span class="vector-card-corner corner-bl">⌞</span>
+          <span class="vector-card-corner corner-br">⌟</span>
+          
+          <div class="vector-head">
+            <div class="vector-tag-group">
+              <span class="vector-idx">// VECTOR 02</span>
+              <span class="vector-type">ALGORITHMIC RIGOR</span>
             </div>
-            <div class="c-handle" id="email-handle">saptarshi2007@gmail.com</div>
-            <div class="uplink-subtext" id="email-feedback">Click to Copy Address</div>
+            <span class="vector-status-pill status-verified"><span class="pill-dot dot-green"></span>VERIFIED</span>
+          </div>
+
+          <div class="vector-main">
+            <div class="vector-platform">
+              <svg class="vector-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.874 5.874 0 0 0 .749 1.986l.228.399.043.082.02.043 2.503 3.998c.365.586.883 1.055 1.503 1.362a4.417 4.417 0 0 0 2.052.493 4.39 4.39 0 0 0 1.916-.432 4.475 4.475 0 0 0 1.545-1.258l3.702-4.469a1.376 1.376 0 0 0-.188-1.936 1.376 1.376 0 0 0-1.937.188l-3.693 4.457a1.724 1.724 0 0 1-1.339.601 1.733 1.733 0 0 1-1.428-.738L6.08 17.48a3.178 3.178 0 0 1-.41-.99 3.01 3.01 0 0 1-.035-1.284 3.07 3.07 0 0 1 .715-1.242l3.864-4.136 5.405-5.787a1.381 1.381 0 0 0-.012-1.928A1.368 1.368 0 0 0 13.483 0zm-2.88 5.576l-3.69 3.951a1.376 1.376 0 0 0 .094 1.944 1.375 1.375 0 0 0 1.943-.094l3.69-3.951a1.376 1.376 0 0 0-.094-1.944 1.375 1.375 0 0 0-1.943.094zm9.324 4.544H13.75a1.375 1.375 0 0 0 0 2.75h6.177a1.375 1.375 0 0 0 0-2.75z"/>
+              </svg>
+              <span class="vector-handle">Saptarshi2007</span>
+            </div>
+            <div class="vector-metric-strip">
+              <div class="v-metric">
+                <span class="v-num">100+</span>
+                <span class="v-lbl">PROBLEMS SOLVED</span>
+              </div>
+              <div class="v-metric">
+                <span class="v-tech">LEETPUSH PIPELINE</span>
+                <span class="v-lbl">AUTOMATED GIT SYNC</span>
+              </div>
+            </div>
+            <p class="vector-desc">
+              Continuous practice across Graphs (Dijkstra, DFS/BFS), Dynamic Programming, Binary Search Trees, and Heaps with automated continuous GitHub integration.
+            </p>
+          </div>
+
+          <div class="vector-footer">
+            <a href="https://leetcode.com/u/Saptarshi2007/" target="_blank" rel="noopener noreferrer" class="vector-action-btn">
+              <span>VERIFY LEETCODE</span>
+              <span class="btn-arrow">&nearr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Vector 03: LinkedIn -->
+        <div class="vector-card" data-vector="linkedin">
+          <span class="vector-card-corner corner-tl">⌜</span>
+          <span class="vector-card-corner corner-tr">⌝</span>
+          <span class="vector-card-corner corner-bl">⌞</span>
+          <span class="vector-card-corner corner-br">⌟</span>
+          
+          <div class="vector-head">
+            <div class="vector-tag-group">
+              <span class="vector-idx">// VECTOR 03</span>
+              <span class="vector-type">PROFESSIONAL IDENTITY</span>
+            </div>
+            <span class="vector-status-pill status-verified"><span class="pill-dot dot-blue"></span>VERIFIED</span>
+          </div>
+
+          <div class="vector-main">
+            <div class="vector-platform">
+              <svg class="vector-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span class="vector-handle">saptarshi-das</span>
+            </div>
+            <div class="vector-metric-strip">
+              <div class="v-metric">
+                <span class="v-num">VIT</span>
+                <span class="v-lbl">VELLORE (CLASS OF 2029)</span>
+              </div>
+              <div class="v-metric">
+                <span class="v-tech">EE &bull; SYSTEMS</span>
+                <span class="v-lbl">CORE FOCUS</span>
+              </div>
+            </div>
+            <p class="vector-desc">
+              Academic milestones, engineering connections, hardware development updates, and public certification credentials.
+            </p>
+          </div>
+
+          <div class="vector-footer">
+            <a href="https://www.linkedin.com/in/saptarshi-das-3255673a1/" target="_blank" rel="noopener noreferrer" class="vector-action-btn">
+              <span>VIEW PROFILE</span>
+              <span class="btn-arrow">&nearr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Part 2: Verified Credential Stream (Compact Editorial Rows) -->
+      <div class="signals-stream-header">
+        <span class="stream-title">// VERIFIED CREDENTIALS &amp; MILESTONES</span>
+        <span class="stream-line"></span>
+        <span class="stream-badge">AUTHENTIC RECORD</span>
+      </div>
+
+      <div class="credentials-stream">
+        
+        <!-- Credential 01: Coursera & IBM AI -->
+        <article class="credential-row">
+          <div class="cred-left">
+            <span class="cred-year">2026</span>
+            <span class="cred-cat cat-cert">PROFESSIONAL CERTIFICATION</span>
+          </div>
+          <div class="cred-body">
+            <div class="cred-title-row">
+              <h4 class="cred-title">Developing AI Applications with Python &amp; Flask &bull; Embedded AI</h4>
+              <span class="cred-issuer">IBM Developer Skills Network &bull; Coursera</span>
+            </div>
+            <p class="cred-desc">
+              Engineered and validated Python Flask microservices incorporating Watson emotion detection models, packaging endpoints with unit tests and server routing.
+            </p>
+          </div>
+          <div class="cred-action">
+            <a href="https://github.com/saptarshidas578/oaqjp-final-project-emb-ai" target="_blank" rel="noopener noreferrer" class="cred-verify-link">
+              <span>INSPECT REPO</span>
+              <span class="arrow">&nearr;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Credential 02: LeetCode 100+ & LeetPush -->
+        <article class="credential-row">
+          <div class="cred-left">
+            <span class="cred-year">2026+</span>
+            <span class="cred-cat cat-dsa">PROBLEM SOLVING</span>
+          </div>
+          <div class="cred-body">
+            <div class="cred-title-row">
+              <h4 class="cred-title">100+ LeetCode Solutions with Automated Git Pipeline</h4>
+              <span class="cred-issuer">LeetCode &bull; Automated LeetPush Sync</span>
+            </div>
+            <p class="cred-desc">
+              Continuous algorithmic problem-solving repository with automated GitHub synchronization, cataloging Python 3 implementations across Graphs, Trees, and Dynamic Programming.
+            </p>
+          </div>
+          <div class="cred-action">
+            <a href="https://github.com/saptarshidas578/leetcode-solutions" target="_blank" rel="noopener noreferrer" class="cred-verify-link">
+              <span>VIEW SOLUTIONS</span>
+              <span class="arrow">&nearr;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Credential 03: Open Source Release -->
+        <article class="credential-row">
+          <div class="cred-left">
+            <span class="cred-year">2026</span>
+            <span class="cred-cat cat-oss">OPEN SOURCE SYSTEM</span>
+          </div>
+          <div class="cred-body">
+            <div class="cred-title-row">
+              <h4 class="cred-title">Dual-Core ESP32 Smart Horology with FreeRTOS &amp; I2S DMA Engine</h4>
+              <span class="cred-issuer">Public GitHub Release</span>
+            </div>
+            <p class="cred-desc">
+              Architected deterministic real-time audio synthesis firmware in C on Xtensa dual-core architecture, achieving 0.00 ms audio jitter with NTP sync and hardware RTC backup.
+            </p>
+          </div>
+          <div class="cred-action">
+            <a href="https://github.com/saptarshidas578/ESP32-Smart-Grandfather-Clock" target="_blank" rel="noopener noreferrer" class="cred-verify-link">
+              <span>VIEW FIRMWARE</span>
+              <span class="arrow">&nearr;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Credential 04: Academic Foundations -->
+        <article class="credential-row">
+          <div class="cred-left">
+            <span class="cred-year">2025 — 2029</span>
+            <span class="cred-cat cat-acad">ACADEMIC PROGRAM</span>
+          </div>
+          <div class="cred-body">
+            <div class="cred-title-row">
+              <h4 class="cred-title">B.Tech Electrical &amp; Computer Science Engineering</h4>
+              <span class="cred-issuer">Vellore Institute of Technology (VIT), Vellore</span>
+            </div>
+            <p class="cred-desc">
+              Undergraduate program emphasizing Maxwell's equations, circuit theory, analog electronics, digital logic design, computer architecture, and linear algebra.
+            </p>
+          </div>
+          <div class="cred-action">
+            <a href="#build-log" class="cred-verify-link">
+              <span>VIEW COURSEWORK</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Credential 05: Coursera Verified Registry -->
+        <article class="credential-row">
+          <div class="cred-left">
+            <span class="cred-year">REGISTRY</span>
+            <span class="cred-cat cat-cert">ACCREDITED REGISTRY</span>
+          </div>
+          <div class="cred-body">
+            <div class="cred-title-row">
+              <h4 class="cred-title">Coursera Technical Coursework &amp; Specialization Credentials</h4>
+              <span class="cred-issuer">Coursera &bull; LinkedIn Credential Records</span>
+            </div>
+            <p class="cred-desc">
+              Accredited digital certifications in AI development, computer science, and software engineering verified through institutional partners.
+            </p>
+          </div>
+          <div class="cred-action">
+            <a href="https://www.linkedin.com/in/saptarshi-das-3255673a1/details/certifications/" target="_blank" rel="noopener noreferrer" class="cred-verify-link">
+              <span>VERIFY CERTIFICATES</span>
+              <span class="arrow">&nearr;</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Quiet Grounding Transition toward Section 07 Contact -->
+      <div class="signals-quiet-exit">
+        <div class="exit-line"></div>
+        <div class="exit-beacon">
+          <span class="beacon-pulse"></span>
+          <span class="beacon-core"></span>
+        </div>
+        <div class="exit-label">// 06 &bull; SIGNALS PERSISTED ──&gt; SYSTEM CONVERGING TO IDLE STATE</div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- 07 — CONTACT & CONNECTION (Calm Cinematic Finale) -->
+  <section class="contact-quiet-section" id="contact" aria-label="Contact and Connection">
+      
+      <!-- Subtle Atmospheric Ambient Glow -->
+      <div class="contact-ambient-glow" aria-hidden="true"></div>
+
+      <div class="contact-container">
+        
+        <!-- Section Telemetry Header -->
+        <div class="contact-header">
+          <div class="contact-status-tag">
+            <span class="channel-pulse-dot" aria-hidden="true"></span>
+            <span class="channel-status-text">CHANNEL OPEN // SYSTEM READY FOR TRANSMISSION</span>
+          </div>
+          <h2 class="contact-headline">
+            THE NEXT SYSTEM<br>
+            <span class="headline-highlight">STARTS WITH A CONVERSATION.</span>
+          </h2>
+          <p class="contact-lead">
+            Available for bare-metal firmware architectures, analog signal acquisition, competitive algorithmic design, and low-latency multimodal edge AI research.
+          </p>
+        </div>
+
+        <div class="contact-divider-line" aria-hidden="true"></div>
+
+        <!-- Asymmetric Editorial Layout: Primary Channel & Micro-Singularity Echo -->
+        <div class="contact-editorial-layout">
+
+          <!-- Left Column: Primary Direct Channel & External Links -->
+          <div class="contact-primary-column">
+
+            <div class="primary-channel-block">
+              <span class="channel-label">// PRIMARY DIRECT CHANNEL</span>
+              <div class="primary-email-card" id="primary-email-card">
+                <div class="email-terminal-header">
+                  <span class="terminal-prefix">&gt; echo $INBOX</span>
+                  <span class="terminal-badge">DIRECT ROUTE</span>
+                </div>
+                <div class="email-address-row">
+                  <a href="mailto:saptarshi2007@gmail.com" class="contact-email-link" id="contact-email-link" title="Open mailto:saptarshi2007@gmail.com">
+                    saptarshi2007@gmail.com
+                  </a>
+                </div>
+                <div class="email-actions-row">
+                  <button type="button" class="btn-copy-email" id="btn-copy-email" aria-label="Copy email address to clipboard">
+                    <svg class="copy-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-btn-text" id="copy-btn-text">COPY EMAIL</span>
+                  </button>
+                  <a href="mailto:saptarshi2007@gmail.com" class="btn-open-mail" id="btn-open-mail" aria-label="Open default mail client">
+                    <span>INITIATE TRANSMISSION</span>
+                    <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- External Understated Technical Channels -->
+            <div class="external-channels-block">
+              <span class="channel-label">// EXTERNAL CHANNELS</span>
+              <div class="external-channels-list">
+                <a href="https://github.com/saptarshidas578" target="_blank" rel="noopener noreferrer" class="external-channel-link" id="contact-link-github">
+                  <span class="ch-prefix">01</span>
+                  <span class="ch-name">GITHUB ARCHIVE</span>
+                  <span class="ch-handle">saptarshidas578</span>
+                  <span class="ch-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="https://www.linkedin.com/in/saptarshi-das-3255673a1/" target="_blank" rel="noopener noreferrer" class="external-channel-link" id="contact-link-linkedin">
+                  <span class="ch-prefix">02</span>
+                  <span class="ch-name">LINKEDIN NETWORK</span>
+                  <span class="ch-handle">saptarshi-das</span>
+                  <span class="ch-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="https://leetcode.com/u/Saptarshi2007/" target="_blank" rel="noopener noreferrer" class="external-channel-link" id="contact-link-leetcode">
+                  <span class="ch-prefix">03</span>
+                  <span class="ch-name">LEETCODE VERIFIED</span>
+                  <span class="ch-handle">Saptarshi2007</span>
+                  <span class="ch-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-telemetry-meta">
+              <span class="meta-dot" aria-hidden="true">●</span>
+              <span>DIRECT 256-BIT CHANNEL &bull; TIMEZONE: IST (UTC+5:30) &bull; LATENCY &lt; 15ms</span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: First Touch Portrait Video Loop -->
+          <div class="contact-video-column" id="contact-constellation-column" aria-label="First Touch Visual Transmission">
+            <div class="contact-portrait-card">
+              <div class="portrait-card-header">
+                <span class="hud-mono-tag">// FIRST TOUCH // VISUAL TRANSMISSION</span>
+                <span class="hud-japanese-kicker">ファーストタッチ</span>
+              </div>
+              <div class="portrait-video-wrapper">
+                <video
+                  id="first-touch-video"
+                  class="portrait-loop-video"
+                  poster="/assets/first_touch_portrait_poster.jpg"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  aria-label="First Touch Portrait Video Loop"
+                >
+                  <source src="/assets/first_touch_portrait.mp4" type="video/mp4">
+                  <p class="video-fallback-msg">Visual transmission active. Hardware accelerated playback engaged.</p>
+                </video>
+                <div class="video-subtle-glow" aria-hidden="true"></div>
+              </div>
+              <div class="portrait-card-footer">
+                <div class="hud-signal-status">
+                  <span class="hud-status-dot live"></span>
+                  <span class="hud-status-text">STELLAR HARMONICS &bull; ACTIVE TRANSMISSION</span>
+                </div>
+                <span class="hud-quote">&ldquo;THE SYSTEM IS COMPLETE. THE CHANNEL IS OPEN.&rdquo;</span>
+              </div>
+            </div>
           </div>
 
         </div>
 
-        <footer class="cosmic-footer">
-          <button id="btn-ascend" class="btn-ascend-singularity" title="Glide back to Event Horizon">
-            <span>&uarr; RETURN TO SINGULARITY</span>
+        <!-- Section Transition to Footer -->
+        <div class="contact-footer-transition" aria-hidden="true">
+          <div class="transition-rail">
+            <span class="rail-pulse"></span>
+          </div>
+        </div>
+
+        <!-- Quiet Cinematic Footer -->
+        <footer class="contact-quiet-footer" role="contentinfo">
+          <div class="footer-human-statement">
+            BUILT WITH CURIOSITY FROM FIRST PRINCIPLES. ALWAYS ITERATING.
+          </div>
+
+          <button id="btn-ascend" class="btn-ascend-quiet" title="Return to Event Horizon">
+            <span class="ascend-arrow" aria-hidden="true">&uarr;</span>
+            <span>RETURN TO EVENT HORIZON</span>
           </button>
-          <div class="cosmic-brand">SAPTARSHI DAS // ELECTRICAL &amp; COMPUTER SCIENCE ENGINEERING</div>
-          <div class="cosmic-credits">Quantum Plasma Confinement &bull; 60 FPS Tokamak Simulation &bull; System Online</div>
+
+          <div class="footer-meta-row">
+            <span class="footer-author">SAPTARSHI DAS // ELECTRICAL &amp; COMPUTER SCIENCE ENGINEERING</span>
+            <span class="footer-sep" aria-hidden="true">&bull;</span>
+            <span class="footer-spec">VIT VELLORE</span>
+            <span class="footer-sep" aria-hidden="true">&bull;</span>
+            <span class="footer-status">SYSTEM COMPLETE &bull; CHANNEL OPEN</span>
+          </div>
         </footer>
+
       </div>
     </section>
-
-  </main>
 
   <!-- 04 — CASE STUDY FULL-SCREEN OVERLAY -->
   <aside class="case-study-overlay" id="case-study-overlay" role="dialog" aria-modal="true" aria-hidden="true">
