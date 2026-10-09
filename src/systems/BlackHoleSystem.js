@@ -1,14 +1,14 @@
-import * as THREE from 'three';
-import { 
-  diskVertexShader, 
-  diskFragmentShader, 
-  lensingArcVertexShader, 
+import * as THREE from "three";
+import {
+  diskVertexShader,
+  diskFragmentShader,
+  lensingArcVertexShader,
   lensingArcFragmentShader,
   polarJetBeamVertexShader,
   polarJetBeamFragmentShader,
   polarJetParticleVertexShader,
-  polarJetParticleFragmentShader
-} from '../shaders/blackHoleDisk.js';
+  polarJetParticleFragmentShader,
+} from "../shaders/blackHoleDisk.js";
 
 /**
  * BlackHoleSystem
@@ -60,12 +60,12 @@ export class BlackHoleSystem {
    */
   initEventHorizon() {
     const geometry = new THREE.SphereGeometry(this.radius, 48, 48);
-    
+
     const material = new THREE.MeshBasicMaterial({
       color: 0x000000,
       side: THREE.DoubleSide,
       depthWrite: true,
-      depthTest: true
+      depthTest: true,
     });
 
     this.horizonSphere = new THREE.Mesh(geometry, material);
@@ -77,7 +77,7 @@ export class BlackHoleSystem {
     const occludeMat = new THREE.MeshBasicMaterial({
       color: 0x000000,
       side: THREE.DoubleSide,
-      depthWrite: true
+      depthWrite: true,
     });
     this.occlusionDisk = new THREE.Mesh(occludeGeo, occludeMat);
     this.occlusionDisk.renderOrder = 31;
@@ -97,7 +97,7 @@ export class BlackHoleSystem {
       uDiskOuter: { value: this.diskOuter },
       uFunnelDepth: { value: 2.1 },
       uCameraPos: { value: this.camera.position },
-      uDopplerStrength: { value: 1.25 }
+      uDopplerStrength: { value: 1.25 },
     };
 
     const material = new THREE.ShaderMaterial({
@@ -107,7 +107,7 @@ export class BlackHoleSystem {
       transparent: true,
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
+      depthWrite: false,
     });
 
     this.diskMesh = new THREE.Mesh(geometry, material);
@@ -127,7 +127,7 @@ export class BlackHoleSystem {
     this.upperArcUniforms = {
       uTime: { value: 0 },
       uHoleRadius: { value: this.radius },
-      uIsUpper: { value: 1.0 }
+      uIsUpper: { value: 1.0 },
     };
 
     const upperMat = new THREE.ShaderMaterial({
@@ -137,7 +137,7 @@ export class BlackHoleSystem {
       transparent: true,
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
+      depthWrite: false,
     });
 
     this.upperArcMesh = new THREE.Mesh(upperGeo, upperMat);
@@ -148,12 +148,19 @@ export class BlackHoleSystem {
     this.group.add(this.upperArcMesh);
 
     // Lower Arc: arched under bottom of event horizon behind the disk
-    const lowerGeo = new THREE.RingGeometry(arcRadiusInner, arcRadiusOuter * 0.62, 84, 12, Math.PI, Math.PI);
+    const lowerGeo = new THREE.RingGeometry(
+      arcRadiusInner,
+      arcRadiusOuter * 0.62,
+      84,
+      12,
+      Math.PI,
+      Math.PI
+    );
 
     this.lowerArcUniforms = {
       uTime: { value: 0 },
       uHoleRadius: { value: this.radius },
-      uIsUpper: { value: 0.0 }
+      uIsUpper: { value: 0.0 },
     };
 
     const lowerMat = new THREE.ShaderMaterial({
@@ -163,7 +170,7 @@ export class BlackHoleSystem {
       transparent: true,
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
+      depthWrite: false,
     });
 
     this.lowerArcMesh = new THREE.Mesh(lowerGeo, lowerMat);
@@ -187,7 +194,7 @@ export class BlackHoleSystem {
 
     this.jetUniforms = {
       uTime: { value: 0 },
-      uSpeedMultiplier: { value: 1.0 }
+      uSpeedMultiplier: { value: 1.0 },
     };
 
     // 1. Collimated Beam Shaders
@@ -198,17 +205,17 @@ export class BlackHoleSystem {
       transparent: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const jetLength = 26.0;
-    
+
     // North Beam Cylinder (oriented along +Z axis)
     const beamGeoNorth = new THREE.CylinderGeometry(0.85, 0.26, jetLength, 32, 16, true);
     beamGeoNorth.translate(0, jetLength / 2, 0);
     beamGeoNorth.rotateX(Math.PI / 2); // Rotates cylinder from Y axis to +Z axis
     this.northBeam = new THREE.Mesh(beamGeoNorth, beamMaterial);
-    this.northBeam.position.z = this.radius * 0.90;
+    this.northBeam.position.z = this.radius * 0.9;
     this.jetGroup.add(this.northBeam);
 
     // South Beam Cylinder (oriented along -Z axis)
@@ -216,7 +223,7 @@ export class BlackHoleSystem {
     beamGeoSouth.translate(0, jetLength / 2, 0);
     beamGeoSouth.rotateX(-Math.PI / 2); // Rotates cylinder from Y axis to -Z axis
     this.southBeam = new THREE.Mesh(beamGeoSouth, beamMaterial);
-    this.southBeam.position.z = -this.radius * 0.90;
+    this.southBeam.position.z = -this.radius * 0.9;
     this.jetGroup.add(this.southBeam);
 
     // 2. Helical Vortex Plasma Particles (1,400 particles)
@@ -236,11 +243,11 @@ export class BlackHoleSystem {
       pPoleSigns[i] = i % 2 === 0 ? 1.0 : -1.0;
     }
 
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-    pGeo.setAttribute('size', new THREE.BufferAttribute(pSizes, 1));
-    pGeo.setAttribute('phase', new THREE.BufferAttribute(pPhases, 1));
-    pGeo.setAttribute('progress', new THREE.BufferAttribute(pProgress, 1));
-    pGeo.setAttribute('poleSign', new THREE.BufferAttribute(pPoleSigns, 1));
+    pGeo.setAttribute("position", new THREE.BufferAttribute(pPositions, 3));
+    pGeo.setAttribute("size", new THREE.BufferAttribute(pSizes, 1));
+    pGeo.setAttribute("phase", new THREE.BufferAttribute(pPhases, 1));
+    pGeo.setAttribute("progress", new THREE.BufferAttribute(pProgress, 1));
+    pGeo.setAttribute("poleSign", new THREE.BufferAttribute(pPoleSigns, 1));
 
     const particleMaterial = new THREE.ShaderMaterial({
       vertexShader: polarJetParticleVertexShader,
@@ -248,7 +255,7 @@ export class BlackHoleSystem {
       uniforms: this.jetUniforms,
       transparent: true,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
+      depthWrite: false,
     });
 
     this.jetParticles = new THREE.Points(pGeo, particleMaterial);
@@ -264,8 +271,8 @@ export class BlackHoleSystem {
     let isMouseDown = false;
 
     // Track mouse over hero section to accelerate spin
-    window.addEventListener('mousemove', (e) => {
-      const heroEl = document.getElementById('hero');
+    window.addEventListener("mousemove", (e) => {
+      const heroEl = document.getElementById("hero");
       if (heroEl) {
         const rect = heroEl.getBoundingClientRect();
         const inHero = e.clientY >= rect.top && e.clientY <= rect.bottom;
@@ -287,9 +294,9 @@ export class BlackHoleSystem {
       }
     });
 
-    window.addEventListener('mousedown', (e) => {
+    window.addEventListener("mousedown", (e) => {
       // Don't drag if clicking buttons, links or nav
-      if (e.target.closest('a, button, input, textarea, .top-nav')) return;
+      if (e.target.closest("a, button, input, textarea, .top-nav")) return;
       if (window.scrollY < window.innerHeight * 0.9) {
         isMouseDown = true;
         lastX = e.clientX;
@@ -297,34 +304,42 @@ export class BlackHoleSystem {
       }
     });
 
-    window.addEventListener('mouseup', () => {
+    window.addEventListener("mouseup", () => {
       isMouseDown = false;
     });
 
     // Touch support for mobile drag
-    window.addEventListener('touchstart', (e) => {
-      if (e.target.closest('a, button, input, textarea, .top-nav')) return;
-      if (e.touches.length === 1 && window.scrollY < window.innerHeight * 0.9) {
-        isMouseDown = true;
-        lastX = e.touches[0].clientX;
-        lastY = e.touches[0].clientY;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.target.closest("a, button, input, textarea, .top-nav")) return;
+        if (e.touches.length === 1 && window.scrollY < window.innerHeight * 0.9) {
+          isMouseDown = true;
+          lastX = e.touches[0].clientX;
+          lastY = e.touches[0].clientY;
+        }
+      },
+      { passive: true }
+    );
 
-    window.addEventListener('touchmove', (e) => {
-      if (isMouseDown && e.touches.length === 1) {
-        const dx = e.touches[0].clientX - lastX;
-        const dy = e.touches[0].clientY - lastY;
-        lastX = e.touches[0].clientX;
-        lastY = e.touches[0].clientY;
+    window.addEventListener(
+      "touchmove",
+      (e) => {
+        if (isMouseDown && e.touches.length === 1) {
+          const dx = e.touches[0].clientX - lastX;
+          const dy = e.touches[0].clientY - lastY;
+          lastX = e.touches[0].clientX;
+          lastY = e.touches[0].clientY;
 
-        this.targetUserRotation.y += dx * 0.006;
-        this.targetUserRotation.x += dy * 0.006;
-        this.targetUserRotation.x = Math.max(-1.2, Math.min(1.2, this.targetUserRotation.x));
-      }
-    }, { passive: true });
+          this.targetUserRotation.y += dx * 0.006;
+          this.targetUserRotation.x += dy * 0.006;
+          this.targetUserRotation.x = Math.max(-1.2, Math.min(1.2, this.targetUserRotation.x));
+        }
+      },
+      { passive: true }
+    );
 
-    window.addEventListener('touchend', () => {
+    window.addEventListener("touchend", () => {
       isMouseDown = false;
     });
   }
@@ -383,4 +398,3 @@ export class BlackHoleSystem {
     this.group.visible = progress < 0.88;
   }
 }
-

@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 /**
  * StarfieldSystem
@@ -31,7 +31,7 @@ export class StarfieldSystem {
       new THREE.Color(0xffffff), // F Pure Radiant White
       new THREE.Color(0xfff3e5), // G Solar Warm White
       new THREE.Color(0xffdfb8), // K Warm Amber Gold
-      new THREE.Color(0xffc2a6)  // M Deep Warm Red-Orange
+      new THREE.Color(0xffc2a6), // M Deep Warm Red-Orange
     ];
 
     for (let i = 0; i < this.count; i++) {
@@ -88,12 +88,12 @@ export class StarfieldSystem {
       phases[i] = Math.random() * Math.PI * 2.0;
     }
 
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('originalPosition', new THREE.BufferAttribute(originalPositions, 3));
-    geometry.setAttribute('targetSidePos', new THREE.BufferAttribute(targetSidePositions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-    geometry.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute("originalPosition", new THREE.BufferAttribute(originalPositions, 3));
+    geometry.setAttribute("targetSidePos", new THREE.BufferAttribute(targetSidePositions, 3));
+    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute("phase", new THREE.BufferAttribute(phases, 1));
 
     const vertexShader = `
       attribute vec3 originalPosition;
@@ -151,7 +151,7 @@ export class StarfieldSystem {
 
     this.uniforms = {
       uTime: { value: 0 },
-      uScrollProgress: { value: 0 }
+      uScrollProgress: { value: 0 },
     };
 
     const material = new THREE.ShaderMaterial({
@@ -161,7 +161,7 @@ export class StarfieldSystem {
       transparent: true,
       vertexColors: true,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
+      depthWrite: false,
     });
 
     this.starPoints = new THREE.Points(geometry, material);

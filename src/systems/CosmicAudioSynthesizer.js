@@ -30,18 +30,18 @@ export class CosmicAudioSynthesizer {
 
     // Dynamic Resonant Filter
     this.filter = this.ctx.createBiquadFilter();
-    this.filter.type = 'lowpass';
+    this.filter.type = "lowpass";
     this.filter.frequency.setValueAtTime(160, this.ctx.currentTime);
     this.filter.Q.setValueAtTime(4.5, this.ctx.currentTime);
     this.filter.connect(this.masterGain);
 
     // Sub-bass Gravitational Oscillators (Binaural beating)
     this.osc1 = this.ctx.createOscillator();
-    this.osc1.type = 'sine';
+    this.osc1.type = "sine";
     this.osc1.frequency.setValueAtTime(43.6, this.ctx.currentTime); // Deep hum
 
     this.osc2 = this.ctx.createOscillator();
-    this.osc2.type = 'triangle';
+    this.osc2.type = "triangle";
     this.osc2.frequency.setValueAtTime(44.2, this.ctx.currentTime); // Slight detune
 
     this.subGain = this.ctx.createGain();
@@ -55,7 +55,9 @@ export class CosmicAudioSynthesizer {
     const bufferSize = this.ctx.sampleRate * 2;
     const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
     const output = noiseBuffer.getChannelData(0);
-    let b0 = 0, b1 = 0, b2 = 0;
+    let b0 = 0,
+      b1 = 0,
+      b2 = 0;
     for (let i = 0; i < bufferSize; i++) {
       const white = Math.random() * 2 - 1;
       b0 = 0.99 * b0 + white * 0.05;
@@ -69,7 +71,7 @@ export class CosmicAudioSynthesizer {
     this.noiseNode.loop = true;
 
     const noiseFilter = this.ctx.createBiquadFilter();
-    noiseFilter.type = 'bandpass';
+    noiseFilter.type = "bandpass";
     noiseFilter.frequency.setValueAtTime(320, this.ctx.currentTime);
     noiseFilter.Q.setValueAtTime(2.0, this.ctx.currentTime);
 
@@ -90,7 +92,7 @@ export class CosmicAudioSynthesizer {
       this.init();
     }
 
-    if (this.ctx.state === 'suspended') {
+    if (this.ctx.state === "suspended") {
       this.ctx.resume();
     }
 
@@ -117,7 +119,7 @@ export class CosmicAudioSynthesizer {
     if (!this.isPlaying || !this.ctx) return;
 
     const now = this.ctx.currentTime;
-    
+
     // As user dives into the black hole, filter opens up from 160Hz to 850Hz
     const targetFreq = 160 + Math.pow(scrollProgress, 2.0) * 900 + Math.abs(velocity) * 400;
     this.filter.frequency.setTargetAtTime(Math.min(targetFreq, 1800), now, 0.1);
