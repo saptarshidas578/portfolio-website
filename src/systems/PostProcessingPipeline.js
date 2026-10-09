@@ -1,9 +1,9 @@
-import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { CinematicPassShader } from '../shaders/postProcessingShaders.js';
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { CinematicPassShader } from "../shaders/postProcessingShaders.js";
 
 /**
  * PostProcessingPipeline
@@ -25,7 +25,7 @@ export class PostProcessingPipeline {
     const renderTarget = new THREE.WebGLRenderTarget(width, height, {
       format: THREE.RGBAFormat,
       minFilter: THREE.LinearFilter,
-      magFilter: THREE.LinearFilter
+      magFilter: THREE.LinearFilter,
     });
 
     this.composer = new EffectComposer(renderer, renderTarget);
@@ -36,7 +36,7 @@ export class PostProcessingPipeline {
 
     // High-Resolution Bloom with high threshold (0.95) to prevent any text haze
     const bloomResolution = new THREE.Vector2(
-      Math.max(256, Math.floor(width / 2)), 
+      Math.max(256, Math.floor(width / 2)),
       Math.max(192, Math.floor(height / 2))
     );
 
@@ -44,7 +44,7 @@ export class PostProcessingPipeline {
       bloomResolution,
       0.18, // subtle, refined caustic glow only
       0.15, // tight radius to prevent diffuse haze
-      0.95  // threshold: ensures text and code NEVER bloom or haze
+      0.95 // threshold: ensures text and code NEVER bloom or haze
     );
     this.composer.addPass(this.bloomPass);
 
@@ -56,7 +56,7 @@ export class PostProcessingPipeline {
     this.composer.setPixelRatio(this.renderer.getPixelRatio());
     this.composer.setSize(width, height);
     this.bloomPass.resolution.set(
-      Math.max(256, Math.floor(width / 2)), 
+      Math.max(256, Math.floor(width / 2)),
       Math.max(192, Math.floor(height / 2))
     );
   }

@@ -10,7 +10,7 @@ export const CinematicPassShader = {
     tDiffuse: { value: null },
     uTime: { value: 0 },
     uAberration: { value: 0.0 },
-    uGrainIntensity: { value: 0.0 }
+    uGrainIntensity: { value: 0.0 },
   },
 
   vertexShader: `
@@ -52,5 +52,5 @@ export const CinematicPassShader = {
 
       gl_FragColor = vec4(color, 1.0);
     }
-  `
+  `,
 };

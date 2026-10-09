@@ -1,13 +1,13 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: './',
+  base: "./",
   server: {
     port: 5173,
     host: true,
-    open: false
+    open: false,
   },
   build: {
-    target: 'esnext'
-  }
+    target: "esnext",
+  },
 });

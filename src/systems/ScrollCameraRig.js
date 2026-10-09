@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 /**
  * ScrollCameraRig
@@ -15,7 +15,7 @@ export class ScrollCameraRig {
     this.scrollVelocity = 0.0;
 
     this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-    this.currentPreset = 'CINEMATIC';
+    this.currentPreset = "CINEMATIC";
 
     this.initCameraPath();
     this.setupEventListeners();
@@ -26,21 +26,21 @@ export class ScrollCameraRig {
 
     // Camera starts dead-center framed on the black hole & vertical jets
     this.pathPoints = [
-      new THREE.Vector3(0.0, 1.2, 21.0),     // t = 0.0: Majestic centered wide shot
-      new THREE.Vector3(0.0, 1.0, 15.5),     // t = 0.25: Approaching the singularity
-      new THREE.Vector3(0.0, 0.6, 9.8),      // t = 0.50: Flanked by plasma jets
-      new THREE.Vector3(0.0, 0.3, 5.2),      // t = 0.75: Skimming photon ring
-      new THREE.Vector3(0.0, 0.1, 2.8),      // t = 0.90: Piercing event horizon
-      new THREE.Vector3(0.0, 0.0, 0.5)       // t = 1.0: Submerged in singularity
+      new THREE.Vector3(0.0, 1.2, 21.0), // t = 0.0: Majestic centered wide shot
+      new THREE.Vector3(0.0, 1.0, 15.5), // t = 0.25: Approaching the singularity
+      new THREE.Vector3(0.0, 0.6, 9.8), // t = 0.50: Flanked by plasma jets
+      new THREE.Vector3(0.0, 0.3, 5.2), // t = 0.75: Skimming photon ring
+      new THREE.Vector3(0.0, 0.1, 2.8), // t = 0.90: Piercing event horizon
+      new THREE.Vector3(0.0, 0.0, 0.5), // t = 1.0: Submerged in singularity
     ];
 
     this.lookAtPoints = [
-      new THREE.Vector3(o.x, o.y, 0.0),      // t = 0.0: Direct center
-      new THREE.Vector3(o.x, o.y, 0.0),      // t = 0.25
-      new THREE.Vector3(o.x, o.y, 0.0),      // t = 0.50
-      new THREE.Vector3(o.x, o.y, 0.0),      // t = 0.75
-      new THREE.Vector3(o.x, o.y, 0.0),      // t = 0.90
-      new THREE.Vector3(o.x, o.y, -4.0)      // t = 1.0: Plunge forward
+      new THREE.Vector3(o.x, o.y, 0.0), // t = 0.0: Direct center
+      new THREE.Vector3(o.x, o.y, 0.0), // t = 0.25
+      new THREE.Vector3(o.x, o.y, 0.0), // t = 0.50
+      new THREE.Vector3(o.x, o.y, 0.0), // t = 0.75
+      new THREE.Vector3(o.x, o.y, 0.0), // t = 0.90
+      new THREE.Vector3(o.x, o.y, -4.0), // t = 1.0: Plunge forward
     ];
 
     this.cameraCurve = new THREE.CatmullRomCurve3(this.pathPoints);
@@ -50,26 +50,30 @@ export class ScrollCameraRig {
   }
 
   setupEventListeners() {
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener("mousemove", (e) => {
       this.mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
       this.mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        this.mouse.targetX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
-        this.mouse.targetY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "touchmove",
+      (e) => {
+        if (e.touches.length > 0) {
+          this.mouse.targetX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+          this.mouse.targetY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+        }
+      },
+      { passive: true }
+    );
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
         this.targetScrollProgress = Math.min(1.0, this.targetScrollProgress + 0.1);
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
         this.targetScrollProgress = Math.max(0.0, this.targetScrollProgress - 0.1);
-      } else if (e.key === 'Home') {
+      } else if (e.key === "Home") {
         this.targetScrollProgress = 0.0;
-      } else if (e.key === 'End') {
+      } else if (e.key === "End") {
         this.targetScrollProgress = 1.0;
       }
     });
@@ -86,7 +90,11 @@ export class ScrollCameraRig {
   update(deltaTime) {
     const prevScroll = this.scrollProgress;
     // Responsive, silky smooth lerp during hero transition; lock to 1.0 when deep in portfolio
-    if (this.targetScrollProgress >= 0.99 && typeof window !== 'undefined' && window.scrollY > window.innerHeight * 1.2) {
+    if (
+      this.targetScrollProgress >= 0.99 &&
+      typeof window !== "undefined" &&
+      window.scrollY > window.innerHeight * 1.2
+    ) {
       this.scrollProgress = 1.0;
     } else {
       this.scrollProgress += (this.targetScrollProgress - this.scrollProgress) * 0.18;
@@ -112,11 +120,11 @@ export class ScrollCameraRig {
     let camZ = THREE.MathUtils.lerp(21.0, 0.4, smoothT);
 
     const o = this.targetOrigin;
-    if (this.currentPreset === 'ACCRETION' && t < 0.05) {
+    if (this.currentPreset === "ACCRETION" && t < 0.05) {
       camX = o.x - 12.0 + parallaxOffsetX;
       camY = o.y + 0.4 + parallaxOffsetY;
       camZ = 2.5;
-    } else if (this.currentPreset === 'POLAR' && t < 0.05) {
+    } else if (this.currentPreset === "POLAR" && t < 0.05) {
       camX = o.x + parallaxOffsetX;
       camY = o.y + 18.0 + parallaxOffsetY;
       camZ = 1.2;
@@ -132,7 +140,7 @@ export class ScrollCameraRig {
     return {
       progress: this.scrollProgress,
       velocity: this.scrollVelocity,
-      inSingularity: this.scrollProgress > 0.85
+      inSingularity: this.scrollProgress > 0.85,
     };
   }
 }
